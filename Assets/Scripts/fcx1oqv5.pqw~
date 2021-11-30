@@ -1,0 +1,75 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    float h, z;
+    public float speed;
+    Vector2 moveDir;
+    Vector2 dirVec;
+
+    Collider2D scanObj;
+    public LayerMask scanningMask;
+    void Start()
+    {
+        
+    }
+
+    void Update()
+    {
+        Move();
+        playerInput();
+    }
+
+    private void FixedUpdate()
+    {
+        Debug.DrawRay(transform.position, dirVec, new Color(0, 1, 0));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dirVec, 0.7f, scanningMask);
+
+        if(hit.collider != null)
+        {
+            scanObj = hit.collider;
+        }
+        else
+        {
+            scanObj = null;
+        }
+
+
+    }
+    
+
+    
+   void playerInput()
+   {
+        h = Input.GetAxisRaw("Horizontal");
+        z = Input.GetAxisRaw("Vertical");
+
+        if(h != 0)
+        {
+            dirVec = h == 1 ? Vector2.right : Vector2.left;
+        }
+        else
+        {
+            dirVec = z == 1 ? Vector2.up : Vector2.down;
+        }
+   }
+
+   void Move()
+   {
+
+       moveDir = Vector2.zero;
+       moveDir += new Vector2(h, z);
+
+       transform.Translate(moveDir * speed * Time.deltaTime);
+   }
+
+
+    void Scan()
+    {
+        scanObj.GetComponent<ScanningObject>().
+    }
+
+
+}
