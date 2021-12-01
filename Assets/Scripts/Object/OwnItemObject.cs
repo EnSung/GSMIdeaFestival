@@ -1,14 +1,17 @@
+
+using UnityEngine;
+
+
+
 public class OwnItemObject : ScanningObject
 {
 
-    public Item ownItem;
-    public bool isNull;
+    public GameObject ownItem;
     public override void Scan(PlayerController player)
     {
-        if(player.ownItem == null && !isNull){
-            player.ownItem = ownItem;
+        if(player.ownItem == null && ownItem != null){
+            player.ownItem = ownItem.GetComponent<Item>();
             ownItem = null;
-            isNull = true;
         }
     }
 

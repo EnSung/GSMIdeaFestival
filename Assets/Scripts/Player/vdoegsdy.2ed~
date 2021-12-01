@@ -55,35 +55,22 @@ public class PlayerController : MonoBehaviour
    {
         h = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
-        Vector2 dir = new Vector2(h, z);
 
-        if (dir.magnitude == 0)
-        {
-
-        }
-
-        else if (h != 0)
+        if(h != 0)
         {
             dirVec = h == 1 ? Vector2.right : Vector2.left;
         }
-        else if (h == 0)
+        else
         {
             dirVec = z == 1 ? Vector2.up : Vector2.down;
         }
-        
-
 
         isWalk = !(h == 0 && z == 0);
         
         
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Scanning();
-        }
-
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Drop();
+            Scanning();
         }
    }
 
@@ -108,15 +95,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Drop()
-    {
-        if (ownItem != null)
-        {
-            ownItem.gameObject.transform.parent = null;
-            ownItem.transform.position = (Vector2)transform.position + dirVec + dirVec * 0.5f;
-            ownItem.gameObject.SetActive(true);
-        }
-    }
     void AnimationControl()
     {
         anim.SetFloat("h", h != 0 ? 1 : -1);

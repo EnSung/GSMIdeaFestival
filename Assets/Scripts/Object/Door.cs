@@ -10,26 +10,28 @@ public class Door : Teleport
     public override void Scan(PlayerController player)
     {
         targetObj = player.gameObject;
-        if (!isLock)
+
         {
-            StartCoroutine(teleport());
-        }
-        else
-        {
-            if (player.ownItem.itemName == "ø≠ºË")
+
+            if (!isLock)
             {
-                isLock = false;
-                player.ownItem = null;
-
+                    StartCoroutine(teleport());
             }
+            else
+            {
+                if (player.ownItem.itemName == "ø≠ºË")
+                {
+                    if (player.ownItem != null)
+                    {
+                        isLock = false;
+                        player.ownItem = null;
+                    }
+                }
                 // ¿·∞‹¿÷¥Ÿ µÓ ≈ÿΩ∫∆Æ ∂ÁøÏ±‚
+            }
         }
     }
 
-    public override string ToString()
-    {
-        return base.ToString();
-    }
 
     void Start()
     {
