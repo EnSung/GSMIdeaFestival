@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Door : Teleport
 {
+   /* public enum Place
+    {
+        In,
+        Out,
+    }
 
+    public Place place;*/
     public bool isLock;
-
+    public string neededItemName;
+    //public int floor;
+    //public int address;
     public override void Scan(PlayerController player)
     {
         targetObj = player.gameObject;
@@ -15,16 +23,32 @@ public class Door : Teleport
 
             if (!isLock)
             {
-                    StartCoroutine(teleport());
+                StartCoroutine(teleport());
+
+               /* if (place == Place.In)
+                {
+                    GameSceneManager.Instance.outRoom(this);
+                }
+                else
+                {
+                    GameSceneManager.Instance.inRoom(floor, address);
+                }*/
             }
             else
             {
-                if (player.ownItem.itemName == "열쇠")
+                if (player.ownItem == null)
                 {
-                    if (player.ownItem != null)
+                    
+                }
+                else
+                {
+                    if (player.ownItem.itemName == neededItemName)
                     {
-                        isLock = false;
-                        player.ownItem = null;
+                        if (player.ownItem != null)
+                        {
+                            isLock = false;
+                            player.ownItem = null;
+                        }
                     }
                 }
                 // 잠겨있다 등 텍스트 띄우기

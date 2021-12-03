@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sp;
     public Item ownItem;
 
+    public float radius;
 
     public LayerMask scanningMask;
     void Start()
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
    {
         h = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
-        Vector2 dir = new Vector2(h, z);
+        Vector2 dir = new Vector2(h, z).normalized;
 
         if (dir.magnitude == 0)
         {
@@ -112,9 +113,15 @@ public class PlayerController : MonoBehaviour
     {
         if (ownItem != null)
         {
-            ownItem.gameObject.transform.parent = null;
-            ownItem.transform.position = (Vector2)transform.position + dirVec + dirVec * 0.5f;
-            ownItem.gameObject.SetActive(true);
+            Collider2D hits = Physics2D.OverlapCircle((Vector2)transform.position + dirVec + dirVec * 0.5f, radius);
+
+            if (hits == null)
+            {
+                ownItem.gameObject.transform.parent = null;
+                ownItem.transform.position = (Vector2)transform.position + dirVec + dirVec * 0.5f;
+                ownItem.gameObject.SetActive(true);
+                ownItem = null;
+            }
         }
     }
     void AnimationControl()
@@ -140,5 +147,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere((Vector2)transform.position + dirVec + dirVec * 0.5f, radius);
+    }
 }

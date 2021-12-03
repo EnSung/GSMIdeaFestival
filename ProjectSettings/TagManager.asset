@@ -6,11 +6,12 @@ TagManager:
   tags:
   - enemy
   - obstacle
+  - ToRoom
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - obstacle

@@ -6,7 +6,7 @@ public class Teleport : ScanningObject
 {
     public GameObject targetObj;
 
-    public GameObject goalObj;
+    public Transform goalObj;
 
     bool canTeleport;
 
