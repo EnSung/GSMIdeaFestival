@@ -19,8 +19,6 @@ public class GameSceneManager : Singleton<GameSceneManager>
         Room[] roms = GameObject.Find("Floor_3").transform.Find("Room").GetComponentsInChildren<Room>();
         Door[] dors = GameObject.Find("Floor_3").transform.Find("Door").GetComponentsInChildren<Door>();
 
-        Debug.Log(roms.Length);
-        Debug.Log(dors.Length);
 
 
         foreach (Room room in roms)
@@ -35,15 +33,6 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
 
 
-        foreach (var item in rooms[3].Keys)
-        {
-            Debug.Log("room  " + item);
-        }
-
-        foreach (var item in doors[3].Keys)
-        {
-            Debug.Log("door  " + item);
-        }
         mapSetting();
     }
 

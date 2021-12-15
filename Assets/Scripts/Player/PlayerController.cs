@@ -71,7 +71,6 @@ public class PlayerController : MonoBehaviour
         {
             dirVec = z == 1 ? Vector2.up : Vector2.down;
         }
-        
 
 
         isWalk = !(h == 0 && z == 0);
@@ -92,7 +91,7 @@ public class PlayerController : MonoBehaviour
    {
 
        moveDir = Vector2.zero;
-       moveDir += new Vector2(h, z);
+       moveDir += new Vector2(h, z);     
 
        transform.Translate(moveDir * speed * Time.deltaTime);
    }

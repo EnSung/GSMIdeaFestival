@@ -67,16 +67,16 @@ TextureImporter:
     second: Wall_down
   - first:
       213: 7399533318584292489
-    second: k
+    second: k_left_up
   - first:
       213: 7713819393718715255
-    second: tile_1
+    second: k_right_up
   - first:
       213: -3718020969999653077
-    second: tile_4
+    second: k_left_down
   - first:
       213: -1792038606962134732
-    second: tile_24
+    second: k_right_down
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -643,7 +643,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: k
+      name: k_left_up
       rect:
         serializedVersion: 2
         x: 12
@@ -664,7 +664,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_1
+      name: k_right_up
       rect:
         serializedVersion: 2
         x: 21
@@ -685,7 +685,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_4
+      name: k_left_down
       rect:
         serializedVersion: 2
         x: 12
@@ -706,7 +706,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_24
+      name: k_right_down
       rect:
         serializedVersion: 2
         x: 21
