@@ -8,34 +8,26 @@ public class Teleport : ScanningObject
 
     public Transform goalObj;
 
-    bool canTeleport;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+            targetObj = collision.gameObject;
+
         if (collision.CompareTag("Player"))
         {
-            targetObj = collision.gameObject;
-            canTeleport = true;
+            GameSceneManager.Instance.playerTeleport(this.gameObject);
         }
+            StartCoroutine(teleport());
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        Debug.Log(collision.name);
-       
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-            canTeleport = false;
-    }
 
     public override void Scan(PlayerController player)
     {
         base.Scan(player);
         targetObj = player.gameObject;
-        StartCoroutine(teleport());
+        
+        //StartCoroutine(teleport());
     }
     public virtual IEnumerator teleport()
     {

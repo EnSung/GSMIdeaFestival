@@ -4,17 +4,8 @@ using UnityEngine;
 
 public class Door : Teleport
 {
-   /* public enum Place
-    {
-        In,
-        Out,
-    }
-
-    public Place place;*/
     public bool isLock;
     public string neededItemName;
-    //public int floor;
-    //public int address;
     public override void Scan(PlayerController player)
     {
         targetObj = player.gameObject;
@@ -25,14 +16,6 @@ public class Door : Teleport
             {
                 StartCoroutine(teleport());
 
-               /* if (place == Place.In)
-                {
-                    GameSceneManager.Instance.outRoom(this);
-                }
-                else
-                {
-                    GameSceneManager.Instance.inRoom(floor, address);
-                }*/
             }
             else
             {
@@ -57,13 +40,17 @@ public class Door : Teleport
     }
 
 
-    void Start()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (!isLock)
+        {
+            targetObj = collision.gameObject;
+            Debug.Log(collision.gameObject.name);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                GameSceneManager.Instance.playerTeleport(this.gameObject);
+            }
+            StartCoroutine(teleport());
+        }
     }
-
-    void Update()
-    {
-        
-    }
-}
+}   

@@ -5,32 +5,45 @@ using UnityEngine;
 public class GameSceneManager : Singleton<GameSceneManager>
 {
 
-    public Dictionary<int, List<Room>> rooms = new Dictionary<int, List<Room>>();
-    public Dictionary<int, List<Door>> doors = new Dictionary<int, List<Door>>();
+    public Dictionary<int, Dictionary<int, Room>> rooms = new Dictionary<int, Dictionary<int, Room>>();
+    public Dictionary<int, Dictionary<int, Door>> doors = new Dictionary<int, Dictionary<int, Door>>();
 
+    public GameObject playerTeleportObject;
+    public bool isTeleport;
     void Start()
     {
-        rooms[3] = new List<Room>();
-        doors[3] = new List<Door>();
+        rooms[3] = new Dictionary<int, Room>();
+        doors[3] = new Dictionary<int, Door>();
 
 
-        Room[] roms = GameObject.Find("Floor_3").transform.FindChild("Room").GetComponentsInChildren<Room>();
-        Door[] dors = GameObject.Find("Floor_3").transform.FindChild("Door").GetComponentsInChildren<Door>();
+        Room[] roms = GameObject.Find("Floor_3").transform.Find("Room").GetComponentsInChildren<Room>();
+        Door[] dors = GameObject.Find("Floor_3").transform.Find("Door").GetComponentsInChildren<Door>();
+
+        Debug.Log(roms.Length);
+        Debug.Log(dors.Length);
+
 
         foreach (Room room in roms)
         {
-            rooms[3].Add(room);
+            rooms[3].Add(System.Int32.Parse(room.name),room);
         }
 
         foreach (Door door in dors)
         {
-            doors[3].Add(door);
-        }
-        foreach (var i in rooms[3])
-        {
-            Debug.Log(i.name);
+            doors[3].Add(System.Int32.Parse(door.name),door);
         }
 
+
+
+        foreach (var item in rooms[3].Keys)
+        {
+            Debug.Log("room  " + item);
+        }
+
+        foreach (var item in doors[3].Keys)
+        {
+            Debug.Log("door  " + item);
+        }
         mapSetting();
     }
 
@@ -39,23 +52,39 @@ public class GameSceneManager : Singleton<GameSceneManager>
     {
         
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 3; i <= 5; i++)
         {
 
-            for (int j = 0; j < 20; j++)
+            for (int j = 1; j <= 20; j++)
             {
-                rooms[3][i].door.goalObj = doors[3][i].transform.FindChild("startPos");
-                doors[3][i].goalObj = rooms[3][i].door.transform.FindChild("startPos");
+                int num = (j < 10) ? System.Int32.Parse(i.ToString() + '0' + j.ToString()) : System.Int32.Parse(i.ToString() + j.ToString());
+
+                Debug.Log(num);
+                rooms[i][num].door.goalObj =
+                    doors[i][num].transform.Find("startPos").transform;
+                doors[i][num].goalObj = 
+                    rooms[i][num].door.transform.Find("startPos").transform;    
+
+                
             }
-            int floorNum = Random.Range(0, 5);
+
+            int floorNum = Random.Range(3, 4);
             int roomNum = Random.Range(0, 20);
             int objNum = Random.Range(0, 4);
 
-            Debug.Log(roomNum + "   " + objNum); 
-            rooms[3][roomNum].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[0]);
+            int total = (roomNum < 10) ? System.Int32.Parse(floorNum.ToString() + '0' + roomNum.ToString()) : System.Int32.Parse(floorNum.ToString() + roomNum.ToString());
 
-            Debug.Log(rooms[3][roomNum].ownitemobjcts[objNum].transform.position.x + "," + rooms[3][roomNum].ownitemobjcts[objNum].transform.position.y);
-            Debug.Log(rooms[3][roomNum].ownitemobjcts[objNum].ownItem.name);
+            Debug.Log(total + "   " + objNum);
+            rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[0]);
+
         }
+    }
+
+    public void playerTeleport(GameObject go)
+    {
+        playerTeleportObject = go;
+
+        isTeleport = true;
+
     }
 }
