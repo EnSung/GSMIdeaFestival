@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: kor_reverse_right_down
+  m_Name: room_floor_right_up
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -4626559605290507463, guid: efd403850039e19449d9bacf00b3cfd9,
+  m_Sprite: {fileID: -3377695916761343257, guid: fc2e0c7794945344fad34ac50cc88e3d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:

@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: efd403850039e19449d9bacf00b3cfd9
+guid: fc2e0c7794945344fad34ac50cc88e3d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3326794270289700016
-    second: kor_reverse_left_up
+      213: -5585064399233440748
+    second: room_floor_0
   - first:
-      213: 4330667707048644895
-    second: kor_reverse_left_down
+      213: -5463878601136497077
+    second: room_floor_left_up
   - first:
-      213: -854951235973609473
-    second: kor_reverse_right_up
+      213: -3245305848636616475
+    second: room_floor_left_down
   - first:
-      213: -4626559605290507463
-    second: kor_reverse_right_down
+      213: -3377695916761343257
+    second: room_floor_right_up
+  - first:
+      213: 4750928394080531835
+    second: room_floor_right_down
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -44,7 +47,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -58,7 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 4
+  spritePixelsToUnits: 15.5
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +142,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kor_reverse_left_up
+      name: room_floor_0
       rect:
         serializedVersion: 2
-        x: 162
-        y: 49
-        width: 9
-        height: 8
+        x: 2
+        y: 26
+        width: 17
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05bd39ebc3ad4d1d0800000000000000
-      internalID: -3326794270289700016
+      spriteID: 414a204158ddd72b0800000000000000
+      internalID: -5585064399233440748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kor_reverse_left_down
+      name: room_floor_left_up
       rect:
         serializedVersion: 2
-        x: 162
-        y: 41
-        width: 9
-        height: 8
+        x: 29
+        y: 26
+        width: 17
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +177,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f11d3eea55f991c30800000000000000
-      internalID: 4330667707048644895
+      spriteID: b4e96637c576c24b0800000000000000
+      internalID: -5463878601136497077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kor_reverse_right_up
+      name: room_floor_left_down
       rect:
         serializedVersion: 2
-        x: 171
-        y: 49
-        width: 9
-        height: 8
+        x: 29
+        y: 10
+        width: 17
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +198,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff7038f616a9224f0800000000000000
-      internalID: -854951235973609473
+      spriteID: 5e05488668b56f2d0800000000000000
+      internalID: -3245305848636616475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kor_reverse_right_down
+      name: room_floor_right_up
       rect:
         serializedVersion: 2
-        x: 171
-        y: 41
-        width: 9
-        height: 8
+        x: 46
+        y: 26
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +219,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 933ec723d882bcfb0800000000000000
-      internalID: -4626559605290507463
+      spriteID: 7ea1722a5730021d0800000000000000
+      internalID: -3377695916761343257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room_floor_right_down
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 10
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b75bc72f330bee140800000000000000
+      internalID: 4750928394080531835
       vertices: []
       indices: 
       edges: []
