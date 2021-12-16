@@ -48,7 +48,8 @@ public class Door : Teleport
             Debug.Log(collision.gameObject.name);
             if (collision.gameObject.CompareTag("Player"))
             {
-                GameSceneManager.Instance.playerTeleport(this.gameObject);
+                UIManager.Instance.pop_UI(goalObj.GetComponentInParent<Teleport>().name);
+                GameSceneManager.Instance.playerTeleport(this.gameObject.GetComponent<Teleport>());
             }
             StartCoroutine(teleport());
         }

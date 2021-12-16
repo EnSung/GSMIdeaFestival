@@ -17,10 +17,12 @@ public class OwnItemObject : ScanningObject
     public override void Scan(PlayerController player)
     {
         if(player.ownItem == null && ownItem != null){
+            UIManager.Instance.pop_UI(ownItem.GetComponent<Item>().itemName + "¿ª(∏¶) »πµÊ«ﬂ¥Ÿ.");
             player.ownItem = ownItem.GetComponent<Item>();
             ownItem.transform.parent = player.transform;
             ownItem.transform.localPosition = Vector2.zero;
             ownItem = null;
+
         }
     }
 

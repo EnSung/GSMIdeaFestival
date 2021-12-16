@@ -8,7 +8,8 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public Dictionary<int, Dictionary<int, Room>> rooms = new Dictionary<int, Dictionary<int, Room>>();
     public Dictionary<int, Dictionary<int, Door>> doors = new Dictionary<int, Dictionary<int, Door>>();
 
-    public GameObject playerTeleportObject;
+    public Teleport playerTeleportObject;
+    public Teleport prev_playerTeleportObject;
     public bool isTeleport;
     void Start()
     {
@@ -23,12 +24,12 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
         foreach (Room room in roms)
         {
-            rooms[3].Add(System.Int32.Parse(room.name),room);
+            rooms[3].Add(System.Int32.Parse(room.gameObject.name),room);
         }
 
         foreach (Door door in dors)
         {
-            doors[3].Add(System.Int32.Parse(door.name),door);
+            doors[3].Add(System.Int32.Parse(door.gameObject.name),door);
         }
 
 
@@ -69,11 +70,12 @@ public class GameSceneManager : Singleton<GameSceneManager>
         }
     }
 
-    public void playerTeleport(GameObject go)
+    public void playerTeleport(Teleport go)
     {
-        playerTeleportObject = go;
+            playerTeleportObject = go;
 
+        if(prev_playerTeleportObject == null)
+            prev_playerTeleportObject = go.goalObj.parent.gameObject.GetComponent<Teleport>();
         isTeleport = true;
-
     }
 }

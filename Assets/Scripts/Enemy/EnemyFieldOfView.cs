@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyFieldOfView : MonoBehaviour
 {
+
+    [SerializeField] bool isNormalSight;
     [SerializeField] private bool m_bDebugMode = false;
 
     [Header("View Config")]

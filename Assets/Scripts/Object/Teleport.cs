@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Teleport : ScanningObject
 {
+
+    public string name;
+
     public GameObject targetObj;
 
     public Transform goalObj;
@@ -15,7 +18,8 @@ public class Teleport : ScanningObject
 
         if (collision.CompareTag("Player"))
         {
-            GameSceneManager.Instance.playerTeleport(this.gameObject);
+            UIManager.Instance.pop_UI(goalObj.gameObject.GetComponentInParent<Teleport>().name);
+            GameSceneManager.Instance.playerTeleport(this.gameObject.GetComponent<Teleport>());
         }
             StartCoroutine(teleport());
     }
