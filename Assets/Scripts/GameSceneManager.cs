@@ -11,8 +11,13 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public Teleport playerTeleportObject;
     public Teleport prev_playerTeleportObject;
     public bool isTeleport;
+
+    public bool isGameover;
+
+    public PlayerController player;
     void Start()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         rooms[3] = new Dictionary<int, Room>();
         doors[3] = new Dictionary<int, Door>();
 
@@ -65,7 +70,19 @@ public class GameSceneManager : Singleton<GameSceneManager>
             int total = (roomNum < 10) ? System.Int32.Parse(floorNum.ToString() + '0' + roomNum.ToString()) : System.Int32.Parse(floorNum.ToString() + roomNum.ToString());
 
             Debug.Log(total + "   " + objNum);
-            rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[0]);
+            if(rooms[3][total].ownitemobjcts[objNum].ownItem == null)
+            {
+                Debug.Log(1);
+                rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[1]);
+                Debug.Log(2);
+
+            }
+            /*else
+            {
+                objNum = Random.Range(0, 4);
+                rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[Random.Range(0, GameManager.Instance.itemsPrefabs.Count + 1)]);
+
+            }*/
 
         }
     }

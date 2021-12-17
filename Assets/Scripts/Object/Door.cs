@@ -19,18 +19,18 @@ public class Door : Teleport
             }
             else
             {
-                if (player.ownItem == null)
+                if (player.ownItemList == null)
                 {
                     
                 }
                 else
                 {
-                    if (player.ownItem.itemName == neededItemName)
+                    foreach (Item item in player.ownItemList)
                     {
-                        if (player.ownItem != null)
+                        if(item.itemName == neededItemName)
                         {
-                            isLock = false;
-                            player.ownItem = null;
+                                isLock = false;
+                                player.ownItemList.Remove(item);
                         }
                     }
                 }

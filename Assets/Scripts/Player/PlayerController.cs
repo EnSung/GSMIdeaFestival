@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region stat
     float h, z;
     public float speed;
     bool isWalk;
+    
+    [HideInInspector] public float hungryGauge;
+    [SerializeField] public float maxHungryGauge;
+    public float decreaseAmount;
+
+    #endregion
+
+
+    public bool canMove;
+    bool isdeCreaseHungryGauge;
     Vector2 moveDir;
     Vector2 dirVec;
 
     Collider2D scanObj;
     Animator anim;
     SpriteRenderer sp;
-    public Item ownItem;
 
+    public UsingItem usingItem;
+    public List<Item> ownItemList = new List<Item>(); 
     public float radius;
 
     public LayerMask scanningMask;
@@ -22,13 +34,23 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
+
+        hungryGauge = maxHungryGauge;
+        isdeCreaseHungryGauge = true;
+        canMove = true;
+        StartCoroutine(set_hungryGauge());
     }
 
     void Update()
     {
-        playerInput();
-        Move();
-        AnimationControl();
+
+        if (canMove)
+        {
+            playerInput();
+            Move();
+            AnimationControl();
+        }
+        
     }
 
     private void FixedUpdate()
@@ -85,6 +107,14 @@ public class PlayerController : MonoBehaviour
         {
             Drop();
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(usingItem != null)
+            {
+                usingItem.Use();
+            }
+        }
    }
 
    void Move()
@@ -110,16 +140,16 @@ public class PlayerController : MonoBehaviour
 
     void Drop()
     {
-        if (ownItem != null)
+        if (usingItem != null)
         {
             Collider2D hits = Physics2D.OverlapCircle((Vector2)transform.position + dirVec + dirVec * 0.5f, radius);
 
             if (hits == null)
             {
-                ownItem.gameObject.transform.parent = null;
-                ownItem.transform.position = (Vector2)transform.position + dirVec + dirVec * 0.5f;
-                ownItem.gameObject.SetActive(true);
-                ownItem = null;
+                usingItem.gameObject.transform.parent = null;
+                usingItem.transform.position = (Vector2)transform.position + dirVec + dirVec * 0.5f;
+                usingItem.gameObject.SetActive(true);
+                usingItem = null;
             }
         }
     }
@@ -149,5 +179,22 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere((Vector2)transform.position + dirVec + dirVec * 0.5f, radius);
+    }
+
+    IEnumerator set_hungryGauge()
+    {
+        while (!GameSceneManager.Instance.isGameover)
+        {
+            if (isdeCreaseHungryGauge)
+            {
+                yield return null;
+                hungryGauge -= decreaseAmount;
+
+                yield return new WaitForSeconds(1);
+            }
+            
+        }
+
+
     }
 }

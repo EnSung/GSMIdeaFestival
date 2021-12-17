@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using define;
-public class Item : MonoBehaviour
+
+public class UsingItem : Item
 {
 
-    public string itemName;
 
-
-
-    public itemType type;
     void Start()
     {
-        type = itemType.staticItem;
+        type = define.itemType.usingItem;
     }
 
     void Update()
@@ -20,12 +16,16 @@ public class Item : MonoBehaviour
         
     }
 
+    public virtual void Use()
+    {
+    }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerController>().ownItemList.Add(this);
+            collision.GetComponent<PlayerController>().usingItem = this;
 
             transform.parent = collision.transform;
             transform.localPosition = Vector2.zero;
