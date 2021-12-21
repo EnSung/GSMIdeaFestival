@@ -5,9 +5,24 @@ using UnityEngine;
 public class Stair : Teleport
 {
 
+    PlayerController player;
     public bool isFirst;
     public int floorNum;
-    public bool Lock;
+    public int goTofloorNum;
+    public bool isQuestClear;
+
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
+    private void Update()
+    {
+        if (GameSceneManager.Instance.questClearDict[floorNum])
+        {
+            isQuestClear = true;
+        }    
+    }
 
     public override void Scan(PlayerController player)
     {
@@ -19,21 +34,32 @@ public class Stair : Teleport
         return base.teleport();
     }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!Lock)
+        if (isQuestClear)
         {
-            if (collision.CompareTag("Player"))
+            if (collision.gameObject.CompareTag("Player"))
             {
                 UIManager.Instance.pop_UI(goalObj.gameObject.GetComponentInParent<Teleport>().name);
                 GameSceneManager.Instance.playerTeleport(this.gameObject.GetComponent<Teleport>());
+                targetObj = collision.gameObject;
+                StartCoroutine(teleport());
+
             }
 
-            StartCoroutine(teleport());
+
+            player.curFloor = goTofloorNum;
+            if (isFirst)
+            {
+                // 퀘스트 텍스트 바뀌기
+                isFirst = false;
+
+            }
         }
         else
         {
-
+            UIManager.Instance.pop_UI("퀘스트를 완료해 주세요");
         }
     }
 }

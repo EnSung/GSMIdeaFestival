@@ -7,7 +7,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
     public Dictionary<int, Dictionary<int, Room>> rooms = new Dictionary<int, Dictionary<int, Room>>();
     public Dictionary<int, Dictionary<int, Door>> doors = new Dictionary<int, Dictionary<int, Door>>();
-
+    public Dictionary<int, bool> questClearDict = new Dictionary<int, bool>();
     public Teleport playerTeleportObject;
     public Teleport prev_playerTeleportObject;
     public bool isTeleport;
@@ -35,6 +35,11 @@ public class GameSceneManager : Singleton<GameSceneManager>
         foreach (Door door in dors)
         {
             doors[3].Add(System.Int32.Parse(door.gameObject.name),door);
+        }
+
+        for (int i = 1; i < 5; i++)
+        {
+            questClearDict.Add(i, false);
         }
 
 
@@ -65,9 +70,11 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
             int floorNum = Random.Range(3, 4);
             int roomNum = Random.Range(1, 20);
-            int objNum = Random.Range(0, 4);
 
             int total = (roomNum < 10) ? System.Int32.Parse(floorNum.ToString() + '0' + roomNum.ToString()) : System.Int32.Parse(floorNum.ToString() + roomNum.ToString());
+
+            int objNum = Random.Range(0, rooms[3][total].ownitemobjcts.Count);
+
 
             Debug.Log(total + "   " + objNum);
             if(rooms[3][total].ownitemobjcts[objNum].ownItem == null)
@@ -77,6 +84,18 @@ public class GameSceneManager : Singleton<GameSceneManager>
                 Debug.Log(2);
 
             }
+
+            roomNum = Random.Range(1, 20);
+
+
+            objNum = Random.Range(0, rooms[3][total].ownitemobjcts.Count);
+
+            total = (roomNum < 10) ? System.Int32.Parse(floorNum.ToString() + '0' + roomNum.ToString()) : System.Int32.Parse(floorNum.ToString() + roomNum.ToString());
+            
+            Debug.Log(total + "   " + objNum);
+
+            rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[2]);
+            
             /*else
             {
                 objNum = Random.Range(0, 4);

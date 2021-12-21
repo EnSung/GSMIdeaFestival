@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
             {
                 usingItem.gameObject.transform.parent = null;
                 usingItem.transform.position = (Vector2)transform.position + dirVec + dirVec * 0.5f;
-                usingItem.gameObject.SetActive(true);
+                usingItem.gameObject.GetComponent<SpriteRenderer>().enabled = true;
                 usingItem = null;
             }
         }

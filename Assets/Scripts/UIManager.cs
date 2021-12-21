@@ -13,6 +13,7 @@ public class UIManager : Singleton<UIManager>
     public Image usingItemImage;
     public Text usingItemName;
 
+    public Text questText;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -32,7 +33,7 @@ public class UIManager : Singleton<UIManager>
         placePanel.GetComponent<Animation>().Play();
     }
 
-
+    
     public void set_hungryGauge()
     {
         hungryGauge.value = player.hungryGauge;

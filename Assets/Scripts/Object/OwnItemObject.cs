@@ -23,9 +23,11 @@ public class OwnItemObject : ScanningObject
             {
                 if (ownItem != null)
                 {
+                    UIManager.Instance.pop_UI(ownItem.GetComponent<Item>().itemName + "¿ª(∏¶) »πµÊ«ﬂ¥Ÿ.");
                     player.ownItemList.Add(ownItem.GetComponent<Item>());
                     ownItem.transform.parent = player.transform;
                     ownItem.transform.localPosition = Vector2.zero;
+                    ownItem.GetComponent<Item>().isGetByPlayer = true;
                     ownItem = null;
                 }
 
@@ -38,6 +40,8 @@ public class OwnItemObject : ScanningObject
                     player.usingItem = ownItem.GetComponent<UsingItem>();
                     ownItem.transform.parent = player.transform;
                     ownItem.transform.localPosition = Vector2.zero;
+                    ownItem.GetComponent<UsingItem>().isGetByPlayer = true;
+
                     ownItem = null;
                 }
 
@@ -50,7 +54,7 @@ public class OwnItemObject : ScanningObject
     public void itemSpawn(GameObject obj)
     {
         ownItem = Instantiate(obj);
-        ownItem.SetActive(false);
+        ownItem.GetComponent<SpriteRenderer>().enabled = false;
         ownItem.transform.parent = this.gameObject.transform;
         ownItem.transform.localPosition = Vector2.zero;
     }

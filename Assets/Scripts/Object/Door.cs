@@ -44,7 +44,11 @@ public class Door : Teleport
     {
         if (!isLock)
         {
-            targetObj = collision.gameObject;
+            if (collision.collider.CompareTag("Player"))
+            {
+                targetObj = collision.gameObject;
+
+            }
             Debug.Log(collision.gameObject.name);
             if (collision.gameObject.CompareTag("Player"))
             {

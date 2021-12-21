@@ -6,6 +6,7 @@ using define;
 public class Item : MonoBehaviour
 {
 
+    public bool isGetByPlayer;
     public SpriteRenderer itemImage;
     public string itemName;
 
@@ -18,17 +19,13 @@ public class Item : MonoBehaviour
         itemImage = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
-    {
-        
-    }
-
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerController>().ownItemList.Add(this);
+            collision.GetComponent<Item>().isGetByPlayer = true;
 
             transform.parent = collision.transform;
             transform.localPosition = Vector2.zero;

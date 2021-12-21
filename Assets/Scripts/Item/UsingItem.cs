@@ -27,6 +27,7 @@ public class UsingItem : Item
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerController>().usingItem = this;
+            collision.GetComponent<Item>().isGetByPlayer = true;
 
             transform.parent = collision.transform;
             transform.localPosition = Vector2.zero;

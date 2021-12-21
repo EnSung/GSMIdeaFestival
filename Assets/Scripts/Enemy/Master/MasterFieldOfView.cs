@@ -92,7 +92,7 @@ public class MasterFieldOfView : MonoBehaviour
                             Debug.DrawLine(originPos, rayHitedTarget.point, Color.yellow);
                         }
 
-                        Debug.Log(rayHitedTarget.collider.name);
+
                         player.canMove = false;
                     }
                     else
