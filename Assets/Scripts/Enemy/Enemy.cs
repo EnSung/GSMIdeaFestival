@@ -237,7 +237,6 @@ public class Enemy : MonoBehaviour
 
                 temp = false;
                 isOut = false;
-                GameSceneManager.Instance.isTeleport = false;
             }
             else
             {
@@ -252,7 +251,7 @@ public class Enemy : MonoBehaviour
                         while (time > Time.time)
                         {
                             yield return null;
-                            if (!isFollowingCancel)
+                            if (GameSceneManager.Instance.isTeleport)
                             {
                                 collider.enabled = true;
                                 break;
@@ -291,9 +290,12 @@ public class Enemy : MonoBehaviour
 
             yield return null;
 
+        GameSceneManager.Instance.isTeleport = false;
+
         }
 
         following_flag = false;
+
         followingWarnSp.SetActive(false);
     }
 

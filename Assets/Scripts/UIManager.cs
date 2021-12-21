@@ -55,4 +55,35 @@ public class UIManager : Singleton<UIManager>
         }
 
     }
+
+    public void questTextUpdate(int floor)
+    {
+        if (GameSceneManager.Instance.questClearDict[floor])
+        {
+            questText.color = Color.green;
+        }
+        else
+        {
+            questText.color = Color.black;
+
+        }
+
+        questText.text = GameManager.Instance.questDescription[floor];
+    }
+
+    public void questTextUpdate(int floor)
+    {
+        if (GameSceneManager.Instance.questClearDict[floor])
+        {
+            questText.color = Color.green;
+        }
+        else
+        {
+            questText.color = Color.black;
+
+        }
+
+        questText.text = GameManager.Instance.questDescription[floor];
+    }
+
 }

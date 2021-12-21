@@ -52,7 +52,7 @@ public class Stair : Teleport
             player.curFloor = goTofloorNum;
             if (isFirst)
             {
-                // Äù½ºÆ® ÅØ½ºÆ® ¹Ù²î±â
+                UIManager.Instance.questTextUpdate(goTofloorNum);
                 isFirst = false;
 
             }

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float applySpeed;
 
     public int curFloor;
+    public int curQuestFloor;
     bool isWalk;
 
     [HideInInspector] public float hungryGauge;
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask scanningMask;
     public UnityEngine.Experimental.Rendering.Universal.Light2D light;
-    void Start()
+    void Start()    
     {
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();

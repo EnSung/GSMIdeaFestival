@@ -15,7 +15,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public bool isGameover;
 
     public PlayerController player;
-    void Start()
+    void Awake()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         rooms[3] = new Dictionary<int, Room>();
@@ -47,6 +47,17 @@ public class GameSceneManager : Singleton<GameSceneManager>
         mapSetting();
     }
 
+    private void Update()
+    {
+        for (int i = 5; i >= 1; i--)
+        {
+            if(questClearDict[i] == false)
+            {
+                player.curQuestFloor = i;
+                break;
+            }
+        }
+    }
 
     public void mapSetting()
     {
