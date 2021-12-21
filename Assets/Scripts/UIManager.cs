@@ -10,6 +10,9 @@ public class UIManager : Singleton<UIManager>
 
     public PlayerController player;
 
+    public Image usingItemImage;
+    public Text usingItemName;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -20,6 +23,7 @@ public class UIManager : Singleton<UIManager>
     private void Update()
     {
         set_hungryGauge();
+        set_usingItem();
     }
     public void pop_UI(string name)
     {
@@ -32,5 +36,22 @@ public class UIManager : Singleton<UIManager>
     public void set_hungryGauge()
     {
         hungryGauge.value = player.hungryGauge;
+    }
+
+    public void set_usingItem()
+    {
+        if(player.usingItem != null)
+        {
+            usingItemName.gameObject.SetActive(true);
+            usingItemImage.sprite = player.usingItem.itemImage.sprite;
+            usingItemImage.color = player.usingItem.itemImage.color;
+            usingItemName.text = player.usingItem.itemName;
+        }
+        else
+        {
+            usingItemName.gameObject.SetActive(false);
+            usingItemImage.color = new Color(159, 159, 159);
+        }
+
     }
 }

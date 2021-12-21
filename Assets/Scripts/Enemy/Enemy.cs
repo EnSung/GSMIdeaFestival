@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     public EnemyFieldOfView fieldOfView;
     public Collider2D collider;
-    
+
     private void Start()
     {
         fieldOfView = GetComponent<EnemyFieldOfView>();
@@ -124,6 +124,7 @@ public class Enemy : MonoBehaviour
 
             while (Vector2.Distance((Vector2)transform.position, targetPos) >= 0.1f)
             {
+                GameSceneManager.Instance.isTeleport = false;
                 if (state != enemyState.patrol) break;
 
 
@@ -131,6 +132,8 @@ public class Enemy : MonoBehaviour
                 yield return null;
 
             }
+
+            GameSceneManager.Instance.isTeleport = false;
 
             if (state != enemyState.patrol) break;
 
@@ -144,6 +147,8 @@ public class Enemy : MonoBehaviour
 
             while (Vector2.Distance((Vector2)transform.position, originPos) >= 0.1f)
             {
+                GameSceneManager.Instance.isTeleport = false;
+
                 if (state != enemyState.patrol) break;
 
 
@@ -171,7 +176,9 @@ public class Enemy : MonoBehaviour
     IEnumerator followingCroutine()
     {
         following_flag = true;
+
         yield return null;
+        GameSceneManager.Instance.isTeleport = false;
 
         bangImg.SetActive(true);
         curWarnSp.gameObject.SetActive(false);
@@ -183,21 +190,21 @@ public class Enemy : MonoBehaviour
         followingWarnSp.SetActive(true);
 
         float dis = 0;
-        bool isout = false;
-        bool boolean = false;
+        bool isOut = false;
+        bool temp = false;
 
         int cnt = 0;
         while (state == enemyState.following)
         {
 
-            if (!boolean)
+            if (!temp)
             {
                 dis = Vector2.Distance(transform.position, player.transform.position);
             }
 
             if (GameSceneManager.Instance.isTeleport)
             {
-                boolean = true;
+                temp = true;
 
                 if (dis > 20)
                 {
@@ -209,24 +216,27 @@ public class Enemy : MonoBehaviour
                 while (time > Time.time)
                 {
                     yield return null;
+                                
                     if (GameSceneManager.Instance.playerTeleportObject == GameSceneManager.Instance.prev_playerTeleportObject)
                     {
-                        isout = true;
+                        isOut = true;
                         GameSceneManager.Instance.prev_playerTeleportObject = null;
                         break;
                     }
+
+
                 }
 
                 GameSceneManager.Instance.prev_playerTeleportObject = null;
 
-                if (!isout)
+                if (!isOut)
                 {
                     transform.position = GameSceneManager.Instance.playerTeleportObject.transform.position;
                 }
 
 
-                boolean = false;
-                isout = false;
+                temp = false;
+                isOut = false;
                 GameSceneManager.Instance.isTeleport = false;
             }
             else
@@ -237,8 +247,8 @@ public class Enemy : MonoBehaviour
                 {
                     float time = Time.time + 0.5f;
 
-                        if(cnt != 0)
-                        {
+                    if (cnt != 0)
+                    {
                         while (time > Time.time)
                         {
                             yield return null;
@@ -255,12 +265,13 @@ public class Enemy : MonoBehaviour
                             }
 
                         }
-                        }
+                    }
 
-                       
+
                     transform.position = Vector2.MoveTowards(transform.position, originPos, speed * Time.deltaTime);
+
                     lookat2D(originPos);
-                    if (Vector2.Distance(transform.position,originPos) <= 0.1f) 
+                    if (Vector2.Distance(transform.position, originPos) <= 0.1f)
                     {
                         collider.enabled = true;
 
@@ -284,7 +295,6 @@ public class Enemy : MonoBehaviour
 
         following_flag = false;
         followingWarnSp.SetActive(false);
-
     }
 
     #endregion
@@ -324,9 +334,9 @@ public class Enemy : MonoBehaviour
 
     void runAwayCheck()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, runAwayCheckRadius,LayerMask.GetMask("Player"));
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, runAwayCheckRadius, LayerMask.GetMask("Player"));
 
-        if(hit == null)
+        if (hit == null)
         {
             isFollowingCancel = true;
         }

@@ -13,7 +13,7 @@ TextureImporter:
     second: washingromm
   - first:
       213: 5090018107685305776
-    second: tile_6
+    second: toilet
   - first:
       213: -9117358011029420329
     second: tile_7
@@ -265,7 +265,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_6
+      name: toilet
       rect:
         serializedVersion: 2
         x: 56

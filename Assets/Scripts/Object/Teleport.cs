@@ -12,7 +12,7 @@ public class Teleport : ScanningObject
     public Transform goalObj;
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
             targetObj = collision.gameObject;
 

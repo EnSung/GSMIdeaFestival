@@ -9,6 +9,7 @@ public class UsingItem : Item
     void Start()
     {
         type = define.itemType.usingItem;
+        itemImage = GetComponent<SpriteRenderer>();
     }
 
     void Update()

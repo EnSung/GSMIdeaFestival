@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using define;
 public class Item : MonoBehaviour
 {
 
+    public SpriteRenderer itemImage;
     public string itemName;
 
 
@@ -13,6 +15,7 @@ public class Item : MonoBehaviour
     void Start()
     {
         type = itemType.staticItem;
+        itemImage = GetComponent<SpriteRenderer>();
     }
 
     void Update()

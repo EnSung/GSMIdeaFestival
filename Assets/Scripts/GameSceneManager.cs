@@ -64,7 +64,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
             }
 
             int floorNum = Random.Range(3, 4);
-            int roomNum = Random.Range(0, 20);
+            int roomNum = Random.Range(1, 20);
             int objNum = Random.Range(0, 4);
 
             int total = (roomNum < 10) ? System.Int32.Parse(floorNum.ToString() + '0' + roomNum.ToString()) : System.Int32.Parse(floorNum.ToString() + roomNum.ToString());
@@ -95,4 +95,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
             prev_playerTeleportObject = go.goalObj.parent.gameObject.GetComponent<Teleport>();
         isTeleport = true;
     }
-}
+
+
+
+}   

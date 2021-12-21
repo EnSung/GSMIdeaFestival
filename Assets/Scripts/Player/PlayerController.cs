@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
+
 
 public class PlayerController : MonoBehaviour
 {
     #region stat
     float h, z;
+
     public float speed;
+    public float applySpeed;
+
+    public int curFloor;
     bool isWalk;
-    
+
     [HideInInspector] public float hungryGauge;
     [SerializeField] public float maxHungryGauge;
     public float decreaseAmount;
@@ -26,15 +32,19 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sp;
 
     public UsingItem usingItem;
-    public List<Item> ownItemList = new List<Item>(); 
+    public List<Item> ownItemList = new List<Item>();
     public float radius;
 
     public LayerMask scanningMask;
+    public UnityEngine.Experimental.Rendering.Universal.Light2D light;
     void Start()
     {
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
+        light = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
 
+
+        applySpeed = speed;
         hungryGauge = maxHungryGauge;
         isdeCreaseHungryGauge = true;
         canMove = true;
@@ -44,13 +54,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        hungryGaugeCheck();
         if (canMove)
         {
             playerInput();
             Move();
             AnimationControl();
         }
-        
+
+
     }
 
     private void FixedUpdate()
@@ -59,7 +71,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, dirVec, new Color(0, 1, 0));
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dirVec, 0.7f, scanningMask);
 
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             scanObj = hit.collider;
         }
@@ -75,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
 
     void playerInput()
-   {
+    {
         h = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
         Vector2 dir = new Vector2(h, z).normalized;
@@ -96,8 +108,8 @@ public class PlayerController : MonoBehaviour
 
 
         isWalk = !(h == 0 && z == 0);
-        
-        
+
+
         if (Input.GetKeyDown(KeyCode.J))
         {
             Scanning();
@@ -110,21 +122,22 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(usingItem != null)
+            if (usingItem != null)
             {
                 usingItem.Use();
+                Destroy(usingItem);
             }
         }
-   }
+    }
 
-   void Move()
-   {
+    void Move()
+    {
 
-       moveDir = Vector2.zero;
-       moveDir += new Vector2(h, z);     
+        moveDir = Vector2.zero;
+        moveDir += new Vector2(h, z);
 
-       transform.Translate(moveDir * speed * Time.deltaTime);
-   }
+        transform.Translate(moveDir * applySpeed * Time.deltaTime);
+    }
 
 
     void Scanning()
@@ -132,7 +145,7 @@ public class PlayerController : MonoBehaviour
         if (scanObj != null)
         {
             if (scanObj.GetComponent<ScanningObject>() != null)
-            {                
+            {
                 scanObj.GetComponent<ScanningObject>().Scan(this);
             }
         }
@@ -159,23 +172,36 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("v", z);
 
 
-        anim.SetLayerWeight(1, isWalk ? 1:0);
-        if(h == 1)
+        anim.SetLayerWeight(1, isWalk ? 1 : 0);
+        if (h == 1)
         {
             if (sp.flipX == false)
             {
                 sp.flipX = true;
             }
         }
-        else if(h == -1)
+        else if (h == -1)
         {
-            if(sp.flipX == true)
+            if (sp.flipX == true)
             {
                 sp.flipX = false;
             }
         }
     }
 
+    void hungryGaugeCheck()
+    {
+        if (hungryGauge <= 0)
+        {
+            applySpeed = 2;
+            light.pointLightOuterRadius = 4;
+        }
+        else
+        {
+            applySpeed = speed;
+            light.pointLightOuterRadius = 8;
+        }
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere((Vector2)transform.position + dirVec + dirVec * 0.5f, radius);
@@ -187,14 +213,12 @@ public class PlayerController : MonoBehaviour
         {
             if (isdeCreaseHungryGauge)
             {
-                yield return null;
-                hungryGauge -= decreaseAmount;
-
                 yield return new WaitForSeconds(1);
+                if (hungryGauge > 0)
+                {
+                    hungryGauge -= decreaseAmount;
+                }
             }
-            
         }
-
-
     }
 }
