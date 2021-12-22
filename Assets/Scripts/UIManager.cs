@@ -25,6 +25,7 @@ public class UIManager : Singleton<UIManager>
     {
         set_hungryGauge();
         set_usingItem();
+        questColorUpdate(player.curQuestFloor);
     }
     public void pop_UI(string name)
     {
@@ -58,20 +59,12 @@ public class UIManager : Singleton<UIManager>
 
     public void questTextUpdate(int floor)
     {
-        if (GameSceneManager.Instance.questClearDict[floor])
-        {
-            questText.color = Color.green;
-        }
-        else
-        {
-            questText.color = Color.black;
-
-        }
+        
 
         questText.text = GameManager.Instance.questDescription[floor];
     }
 
-    public void questTextUpdate(int floor)
+    public void questColorUpdate(int floor)
     {
         if (GameSceneManager.Instance.questClearDict[floor])
         {
@@ -82,8 +75,7 @@ public class UIManager : Singleton<UIManager>
             questText.color = Color.black;
 
         }
-
-        questText.text = GameManager.Instance.questDescription[floor];
     }
+
 
 }

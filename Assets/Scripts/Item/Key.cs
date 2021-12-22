@@ -14,4 +14,5 @@ public class Key : UsingItem
     {
         base.OnTriggerEnter2D(collision);
     }
+
 }

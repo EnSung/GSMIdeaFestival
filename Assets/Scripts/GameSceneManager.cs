@@ -15,10 +15,14 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public bool isGameover;
 
     public PlayerController player;
-    void Awake()
+    protected override void Awake()
     {
+
+
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        Debug.Log(1);
         rooms[3] = new Dictionary<int, Room>();
+        Debug.Log(1);
         doors[3] = new Dictionary<int, Door>();
 
 
@@ -37,10 +41,13 @@ public class GameSceneManager : Singleton<GameSceneManager>
             doors[3].Add(System.Int32.Parse(door.gameObject.name),door);
         }
 
-        for (int i = 1; i < 5; i++)
+        Debug.Log(1);
+
+        for (int i = 1; i <= 5; i++)
         {
             questClearDict.Add(i, false);
         }
+        Debug.Log(1);
 
 
 
@@ -49,21 +56,17 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
     private void Update()
     {
-        for (int i = 5; i >= 1; i--)
-        {
-            if(questClearDict[i] == false)
-            {
-                player.curQuestFloor = i;
-                break;
-            }
-        }
+
+        
     }
+
+    
 
     public void mapSetting()
     {
         
 
-        for (int i = 3; i <= 5; i++)
+        for (int i = 3; i <= 3; i++)
         {
 
             for (int j = 1; j <= 20; j++)
@@ -90,9 +93,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
             Debug.Log(total + "   " + objNum);
             if(rooms[3][total].ownitemobjcts[objNum].ownItem == null)
             {
-                Debug.Log(1);
                 rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[1]);
-                Debug.Log(2);
 
             }
 

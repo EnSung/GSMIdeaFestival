@@ -20,15 +20,12 @@ public class GameManager : Singleton<GameManager>
     {
         TextAsset json = Resources.Load<TextAsset>("questDescription");
 
-        Debug.Log(json.text);
-        Debug.Log(1);
 
         JObject parsedObj = new JObject(); // Json Object »ý¼º
 
-        Debug.Log(2);
+
 
         parsedObj = JObject.Parse(json.text); // Json Parsing
-        Debug.Log(3);
 
         Debug.Log(parsedObj);
 

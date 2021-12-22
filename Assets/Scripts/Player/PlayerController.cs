@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        //Debug.Log("curQF    "+curQuestFloor);
+        //Debug.Log("curF"+ curFloor);
         hungryGaugeCheck();
         if (canMove)
         {

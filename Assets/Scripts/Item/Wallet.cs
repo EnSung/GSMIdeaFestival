@@ -8,8 +8,9 @@ public class Wallet : Item
     {
         if (isGetByPlayer)
         {
-            //Debug.Log(itemName + isGetByPlayer);
+
             GameSceneManager.Instance.questClearDict[3] = true;
         }
+
     }
 }
