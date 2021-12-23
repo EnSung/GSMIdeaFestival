@@ -44,11 +44,8 @@ public class Door : Teleport
     {
         if (!isLock)
         {
-            if (collision.collider.CompareTag("Player"))
-            {
-                targetObj = collision.gameObject;
+            targetObj = collision.gameObject;
 
-            }
             if (collision.gameObject.CompareTag("Player"))
             {
                 UIManager.Instance.pop_UI(goalObj.GetComponentInParent<Teleport>().name);

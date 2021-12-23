@@ -50,6 +50,10 @@ public class GameSceneManager : Singleton<GameSceneManager>
         mapSetting();
     }
 
+    private void Update()
+    {
+        //Debug.Log("isTel    "+isTeleport);
+    }
     public void mapSetting()
     {
         
@@ -106,11 +110,10 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
     public void playerTeleport(Teleport go)
     {
-            playerTeleportObject = go;
-
+        isTeleport = true;
+        playerTeleportObject = go;
         if(prev_playerTeleportObject == null)
             prev_playerTeleportObject = go.goalObj.parent.gameObject.GetComponent<Teleport>();
-        isTeleport = true;
     }
 
     public void randomNum(ref int floorNum,ref int roomNum,ref int total, ref int objNum)
