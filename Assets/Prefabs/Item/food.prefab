@@ -123,7 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36da80fd880b7b942837d77467e18ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGetByPlayer: 0
   itemImage: {fileID: 2487411019758361491}
   itemName: "\uCD08\uCF54\uBC14"
   type: 0
-  up_gauge: 10
+  up_gauge: 100
+  time: 0.5

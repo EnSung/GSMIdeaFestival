@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
-    public bool canMove;
+    public bool canMove_master;
+    public bool canMove_any;
     bool isdeCreaseHungryGauge;
     Vector2 moveDir;
     Vector2 dirVec;
@@ -48,7 +49,8 @@ public class PlayerController : MonoBehaviour
         applySpeed = speed;
         hungryGauge = maxHungryGauge;
         isdeCreaseHungryGauge = true;
-        canMove = true;
+        canMove_master = true;
+        canMove_any  = true;
         StartCoroutine(set_hungryGauge());
     }
 
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("curQF    "+curQuestFloor);
         //Debug.Log("curF"+ curFloor);
         hungryGaugeCheck();
-        if (canMove)
+        if (canMove_master && canMove_any)
         {
             playerInput();
             Move();
@@ -128,7 +130,6 @@ public class PlayerController : MonoBehaviour
             if (usingItem != null)
             {
                 usingItem.Use();
-                Destroy(usingItem);
             }
         }
     }

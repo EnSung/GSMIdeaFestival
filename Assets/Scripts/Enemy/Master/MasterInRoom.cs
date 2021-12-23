@@ -39,7 +39,7 @@ public class MasterInRoom : MonoBehaviour
 
             isObserve = false;
             sight.SetActive(false);
-            player.canMove = true;
+            player.canMove_master = true;
         }
     }
 }

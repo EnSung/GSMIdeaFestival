@@ -25,11 +25,12 @@ public class Item : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerController>().ownItemList.Add(this);
-            collision.GetComponent<Item>().isGetByPlayer = true;
+            
+            this.isGetByPlayer = true;
 
             transform.parent = collision.transform;
             transform.localPosition = Vector2.zero;
-            gameObject.SetActive(false);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

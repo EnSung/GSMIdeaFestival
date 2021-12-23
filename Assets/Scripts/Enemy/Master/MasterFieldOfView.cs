@@ -93,7 +93,7 @@ public class MasterFieldOfView : MonoBehaviour
                         }
 
 
-                        player.canMove = false;
+                        player.canMove_master = false;
                     }
                     else
                     {
@@ -105,7 +105,7 @@ public class MasterFieldOfView : MonoBehaviour
                         // 누군가 있으면
 
                         Debug.Log(rayHitedTarget.collider.name);
-                        player.canMove = true;
+                        player.canMove_master = true;
                     }
                 }
             }

@@ -20,9 +20,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
 
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        Debug.Log(1);
         rooms[3] = new Dictionary<int, Room>();
-        Debug.Log(1);
         doors[3] = new Dictionary<int, Door>();
 
 
@@ -41,26 +39,16 @@ public class GameSceneManager : Singleton<GameSceneManager>
             doors[3].Add(System.Int32.Parse(door.gameObject.name),door);
         }
 
-        Debug.Log(1);
 
         for (int i = 1; i <= 5; i++)
         {
             questClearDict.Add(i, false);
         }
-        Debug.Log(1);
 
 
 
         mapSetting();
     }
-
-    private void Update()
-    {
-
-        
-    }
-
-    
 
     public void mapSetting()
     {
@@ -81,14 +69,9 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
                 
             }
+            int total = 0, floorNum=0,roomNum=0, objNum=0;
 
-            int floorNum = Random.Range(3, 4);
-            int roomNum = Random.Range(1, 20);
-
-            int total = (roomNum < 10) ? System.Int32.Parse(floorNum.ToString() + '0' + roomNum.ToString()) : System.Int32.Parse(floorNum.ToString() + roomNum.ToString());
-
-            int objNum = Random.Range(0, rooms[3][total].ownitemobjcts.Count);
-
+            randomNum(ref floorNum, ref roomNum, ref total, ref objNum);
 
             Debug.Log(total + "   " + objNum);
             if(rooms[3][total].ownitemobjcts[objNum].ownItem == null)
@@ -108,12 +91,6 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
             rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[2]);
             
-            /*else
-            {
-                objNum = Random.Range(0, 4);
-                rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[Random.Range(0, GameManager.Instance.itemsPrefabs.Count + 1)]);
-
-            }*/
 
         }
     }
@@ -125,6 +102,29 @@ public class GameSceneManager : Singleton<GameSceneManager>
         if(prev_playerTeleportObject == null)
             prev_playerTeleportObject = go.goalObj.parent.gameObject.GetComponent<Teleport>();
         isTeleport = true;
+    }
+
+    public void randomNum(ref int floorNum,ref int roomNum,ref int total, ref int objNum)
+    {
+
+        floorNum = Random.Range(3, 4);
+        roomNum = Random.Range(1, 20);
+
+        total = (roomNum < 10) ? System.Int32.Parse(floorNum.ToString() + '0' + roomNum.ToString()) : System.Int32.Parse(floorNum.ToString() + roomNum.ToString());
+
+        objNum = Random.Range(0, rooms[3][total].ownitemobjcts.Count);
+
+    }
+
+    public void randomNum(int floorNum,ref int roomNum, ref int total, ref int objNum)
+    {
+
+        roomNum = Random.Range(1, 20);
+
+        total = (roomNum < 10) ? System.Int32.Parse(floorNum.ToString() + '0' + roomNum.ToString()) : System.Int32.Parse(floorNum.ToString() + roomNum.ToString());
+
+        objNum = Random.Range(0, rooms[3][total].ownitemobjcts.Count);
+
     }
 
 

@@ -57,13 +57,10 @@ public class Stair : Teleport
             player.curFloor = goTofloorNum;
             if (isFirst)
             {
-                Debug.Log(2);
                 UIManager.Instance.questTextUpdate(goTofloorNum);
-                Debug.Log(2);
                 player.curQuestFloor = goTofloorNum;
                 isFirst = false;
 
-                Debug.Log(2);
             }
         }
         else

@@ -26,12 +26,15 @@ public class UsingItem : Item
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerController>().usingItem = this;
-            collision.GetComponent<Item>().isGetByPlayer = true;
-
-            transform.parent = collision.transform;
-            transform.localPosition = Vector2.zero;
-            gameObject.SetActive(false);
+            if(collision.GetComponent<PlayerController>().usingItem == null)
+            {
+                collision.GetComponent<PlayerController>().usingItem = this;
+                this.isGetByPlayer = true;
+                transform.parent = collision.transform;
+                transform.localPosition = Vector2.zero;
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+           
         }
     }
 }
