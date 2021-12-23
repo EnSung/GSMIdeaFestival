@@ -127,5 +127,5 @@ MonoBehaviour:
   itemImage: {fileID: 2487411019758361491}
   itemName: "\uCD08\uCF54\uBC14"
   type: 0
-  up_gauge: 100
+  up_gauge: 10
   time: 0.5

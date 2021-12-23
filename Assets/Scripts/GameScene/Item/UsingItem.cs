@@ -19,6 +19,8 @@ public class UsingItem : Item
 
     public virtual void Use()
     {
+        GetComponent<Collider2D>().enabled = true;
+
     }
 
 
@@ -33,8 +35,11 @@ public class UsingItem : Item
                 transform.parent = collision.transform;
                 transform.localPosition = Vector2.zero;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+                GetComponent<Collider2D>().enabled = false;
+
             }
-           
+
         }
     }
 }

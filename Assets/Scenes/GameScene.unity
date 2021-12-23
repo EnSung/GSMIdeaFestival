@@ -1812,6 +1812,7 @@ MonoBehaviour:
   - {fileID: 203997797919720510, guid: d6aade3c69987884e9242d6b353628a0, type: 3}
   - {fileID: 2487411019758361492, guid: 7f36d4c719b0728459aca3f55864eed7, type: 3}
   - {fileID: 8576063095942055687, guid: 852f0e6c4c2efdd489e7ac08082478b3, type: 3}
+  - {fileID: 2572494510098615369, guid: 12bdcc73d72f1ad448060f2bdbb6b973, type: 3}
 --- !u!1 &160410859
 GameObject:
   m_ObjectHideFlags: 0
@@ -16304,7 +16305,9 @@ MonoBehaviour:
   hungryGauge: 0
   maxHungryGauge: 100
   decreaseAmount: 1
-  canMove: 0
+  canMove_master: 0
+  canMove_any: 0
+  dirVec: {x: 0, y: 0}
   usingItem: {fileID: 0}
   ownItemList: []
   radius: 0.3

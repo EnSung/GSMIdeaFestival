@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -127,7 +128,28 @@ public class Enemy : MonoBehaviour
                 GameSceneManager.Instance.isTeleport = false;
                 if (state != enemyState.patrol) break;
 
+                #region 설치형 아이템 확인
+               /* Collider2D hit = Physics2D.OverlapCircle(transform.position, 3,LayerMask.GetMask("mustClean"));
+                if (hit != null)
+                {
+                    while (Vector2.Distance((Vector2)transform.position, hit.transform.position) >= 0.1f)
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, hit.transform.position, speed * Time.deltaTime);
+                        lookat2D(hit.transform.position);
 
+                    }
+
+                    Destroy(hit.gameObject);
+
+                    while (Vector2.Distance((Vector2)transform.position, originPos) >= 0.1f)
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, originPos, speed * Time.deltaTime);
+                        lookat2D(hit.transform.position);
+
+                    }
+                }*/
+
+                #endregion
                 transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
                 yield return null;
 
@@ -151,7 +173,28 @@ public class Enemy : MonoBehaviour
 
                 if (state != enemyState.patrol) break;
 
+                Collider2D hit = Physics2D.OverlapCircle(transform.position, 3, LayerMask.GetMask("mustClean"));
 
+                #region 설치형 아이템 확인
+                /*if (hit != null)
+                {
+                    while (Vector2.Distance((Vector2)transform.position, hit.transform.position) >= 0.1f)
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, hit.transform.position, speed * Time.deltaTime);
+                        lookat2D(hit.transform.position);
+                    }
+
+                    Destroy(hit);
+
+                    while (Vector2.Distance((Vector2)transform.position, originPos) >= 0.1f)
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, originPos, speed * Time.deltaTime);
+                        lookat2D(hit.transform.position);
+
+                    }
+                }*/
+
+                #endregion
                 transform.position = Vector2.MoveTowards(transform.position, originPos, speed * Time.deltaTime);
                 yield return null;
 
@@ -216,7 +259,8 @@ public class Enemy : MonoBehaviour
                 while (time > Time.time)
                 {
                     yield return null;
-                                
+
+                    Debug.Log(isOut);
                     if (GameSceneManager.Instance.playerTeleportObject == GameSceneManager.Instance.prev_playerTeleportObject)
                     {
                         isOut = true;
@@ -351,6 +395,16 @@ public class Enemy : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, runAwayCheckRadius);
+    }
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 }
 

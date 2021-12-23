@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
 
 
         parsedObj = JObject.Parse(json.text); // Json Parsing
-
+ 
         Debug.Log(parsedObj);
 
 

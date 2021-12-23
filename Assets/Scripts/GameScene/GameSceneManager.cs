@@ -90,7 +90,16 @@ public class GameSceneManager : Singleton<GameSceneManager>
             Debug.Log(total + "   " + objNum);
 
             rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[2]);
-            
+
+            randomNum(ref floorNum, ref roomNum, ref total, ref objNum);
+
+            Debug.Log(total + "   " + objNum);
+
+            if (rooms[3][total].ownitemobjcts[objNum].ownItem == null)
+            {
+                rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[3]);
+
+            }
 
         }
     }

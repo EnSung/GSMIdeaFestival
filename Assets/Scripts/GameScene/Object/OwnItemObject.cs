@@ -55,6 +55,7 @@ public class OwnItemObject : ScanningObject
     {
         ownItem = Instantiate(obj);
         ownItem.GetComponent<SpriteRenderer>().enabled = false;
+        ownItem.GetComponent<Collider2D>().enabled = false;
         ownItem.transform.parent = this.gameObject.transform;
         ownItem.transform.localPosition = Vector2.zero;
     }

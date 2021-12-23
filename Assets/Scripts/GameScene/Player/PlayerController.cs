@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool canMove_any;
     bool isdeCreaseHungryGauge;
     Vector2 moveDir;
-    Vector2 dirVec;
+    public Vector2 dirVec;
 
     Collider2D scanObj;
     Animator anim;
@@ -166,6 +166,7 @@ public class PlayerController : MonoBehaviour
                 usingItem.gameObject.transform.parent = null;
                 usingItem.transform.position = (Vector2)transform.position + dirVec + dirVec * 0.5f;
                 usingItem.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                usingItem.GetComponent<Collider2D>().enabled = true;
                 usingItem = null;
             }
         }
