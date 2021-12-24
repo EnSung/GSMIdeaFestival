@@ -219,14 +219,21 @@ public class Enemy : Unit
                     yield return null;
                     collider.enabled = false;
 
+
                     applySpeed = speed;
 
                     transform.position = Vector2.MoveTowards(transform.position, originPos, applySpeed * Time.deltaTime);
                     lookat2D(originPos);
+                    if (!isFollowingCancel) {
+                        break;
+                    }
                 }
-
+                if (isFollowingCancel)
+                {
                     state = enemyState.patrol;
                     break;
+                }
+                
             }
             if (!teleport_distance_flag) // 텔레포트 상태가 아니면
             {
