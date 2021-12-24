@@ -17,42 +17,31 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public PlayerController player;
     protected override void Awake()
     {
-
-
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        linkMap();
+        mapSetting();
+
+    }
+
+
+    public void linkMap()
+    {
         rooms[3] = new Dictionary<int, Room>();
         doors[3] = new Dictionary<int, Door>();
-
-
         Room[] roms = GameObject.Find("Floor_3").transform.Find("Room").GetComponentsInChildren<Room>();
         Door[] dors = GameObject.Find("Floor_3").transform.Find("Door").GetComponentsInChildren<Door>();
-
-
-
         foreach (Room room in roms)
         {
-            rooms[3].Add(System.Int32.Parse(room.gameObject.name),room);
+            rooms[3].Add(System.Int32.Parse(room.gameObject.name), room);
         }
-
         foreach (Door door in dors)
         {
-            doors[3].Add(System.Int32.Parse(door.gameObject.name),door);
+            doors[3].Add(System.Int32.Parse(door.gameObject.name), door);
         }
-
-
         for (int i = 1; i <= 5; i++)
         {
             questClearDict.Add(i, false);
         }
-
-
-
-        mapSetting();
-    }
-
-    private void Update()
-    {
-        //Debug.Log("isTel    "+isTeleport);
     }
     public void mapSetting()
     {
@@ -102,6 +91,16 @@ public class GameSceneManager : Singleton<GameSceneManager>
             if (rooms[3][total].ownitemobjcts[objNum].ownItem == null)
             {
                 rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[3]);
+
+            }
+
+            randomNum(ref floorNum, ref roomNum, ref total, ref objNum);
+
+            Debug.Log(total + "   " + objNum);
+
+            if (rooms[3][total].ownitemobjcts[objNum].ownItem == null)
+            {
+                rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[4]);
 
             }
 

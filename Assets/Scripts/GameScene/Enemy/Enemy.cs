@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Unit
 {
 
     public enum enemyState
@@ -19,7 +19,8 @@ public class Enemy : MonoBehaviour
     bool patrol_flag = false;
 
     public bool isFollowingCancel = false;
-
+    public float timer;
+    public bool timer_flag;
     #endregion
 
     #region stat
@@ -70,6 +71,10 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        if (timer_flag)
+        {
+            timer += Time.deltaTime;
+        }
 
 
         if (state == enemyState.patrol)
@@ -123,6 +128,7 @@ public class Enemy : MonoBehaviour
 
         lookat2D(targetPos);
 
+        applySpeed = speed;
         while (state == enemyState.patrol)
         {
 
@@ -130,7 +136,7 @@ public class Enemy : MonoBehaviour
             {
                 if (state != enemyState.patrol) break;
 
-                transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, targetPos, applySpeed * Time.deltaTime);
                 yield return null;
 
             }
@@ -154,7 +160,7 @@ public class Enemy : MonoBehaviour
 
 
 
-                transform.position = Vector2.MoveTowards(transform.position, originPos, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, originPos, applySpeed * Time.deltaTime);
                 yield return null;
 
             }
@@ -178,6 +184,7 @@ public class Enemy : MonoBehaviour
     IEnumerator followingCroutine()
     {
         following_flag = true;
+        applySpeed = followingSpeed;
 
         yield return null;
         GameSceneManager.Instance.isTeleport = false;
@@ -198,7 +205,29 @@ public class Enemy : MonoBehaviour
         int cnt = 0;
         while (state == enemyState.following) // 따라가는 상태일때
         {
+            applySpeed = followingSpeed;
+
+
             yield return null;
+
+            if (timer >= 2) // 타이머가 2 이상이되면
+            {
+                timer = 0; // 0으로만들고
+                timer_flag = false; // 플래그 비활성화
+                while (Vector2.Distance(transform.position, originPos) >= 0.1f) // 다시 위치로 돌아가기
+                {
+                    yield return null;
+                    collider.enabled = false;
+
+                    applySpeed = speed;
+
+                    transform.position = Vector2.MoveTowards(transform.position, originPos, applySpeed * Time.deltaTime);
+                    lookat2D(originPos);
+                }
+
+                    state = enemyState.patrol;
+                    break;
+            }
             if (!teleport_distance_flag) // 텔레포트 상태가 아니면
             {
 
@@ -242,57 +271,47 @@ public class Enemy : MonoBehaviour
 
                 // 텔레포트가 끝났으니
                 GameSceneManager.Instance.isTeleport = false; // 텔레포트가 끝났으니 플래그 비활성화
-                Debug.Log(14);
                 teleport_distance_flag = false; // distance플래그 비활성화
-                Debug.Log(15);
                 isOut = false; // 나갔는지 체크하는 플래그 비활성화
             }
             else
             {
-                if (isFollowingCancel)
+                if (isFollowingCancel) // 멀어져서 따라가는것이 캔슬된다면
                 {
-                    float time = Time.time + 0.1f;
+                    float time = Time.time + 0.1f; // 0.1초 기다리기
 
-                    if (cnt == 0)
+                    while (time > Time.time)
                     {
-                        while (time > Time.time)
+                        yield return null;
+                        if (GameSceneManager.Instance.isTeleport) // 0.1초동안 텔레포트한 판정이 나오면
                         {
-                            yield return null;
-                            if (GameSceneManager.Instance.isTeleport)
-                            {
-                                isFollowingCancel = false;
-                                collider.enabled = true;
-                                cnt++;
-                                break;
-                            }
+                            //isFollowingCancel = false; // 캔슬 취소
+                            collider.enabled = true; // 콜라이더 활성화
+                            cnt++;//카운트 업
+                            break;
                         }
                     }
-                    else
+
+                    if (cnt == 0) // 카운트가 업 안됐다면 (텔레포트가 아니었다면)
                     {
-                        while (Vector2.Distance(transform.position, originPos) >= 0.1f)
-                        {
-                            yield return null;
-                            collider.enabled = false;
-
-
-                            transform.position = Vector2.MoveTowards(transform.position, originPos, speed * Time.deltaTime);
-                            lookat2D(originPos);
-                        }
+                        timer_flag = true; //타이머 활성화
                     }
+
+
 
 
 
                 }
-                else
+                else // 캔슬 안됐으면
                 {
-                    collider.enabled = true;
-                    lookat2D(player.transform.position);
-                    transform.position = Vector2.MoveTowards(transform.position, player.transform.position, followingSpeed * Time.deltaTime);
+                    collider.enabled = true; // 콜라이더 활성화
+                    lookat2D(player.transform.position); // 플레이어 바라보기
+                    transform.position = Vector2.MoveTowards(transform.position, player.transform.position, applySpeed * Time.deltaTime); // 플레이어쪽으로 걸어가기
                 }
 
             }
 
-            
+
 
             cnt = 0;
         }
@@ -348,11 +367,7 @@ public class Enemy : MonoBehaviour
 
         if (hit == null)
         {
-            if (!GameSceneManager.Instance.isTeleport)
-            {
                 isFollowingCancel = true;
-
-            }
         }
         else
         {

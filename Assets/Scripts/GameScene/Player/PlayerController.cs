@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.LWRP;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Unit
 {
     #region stat
     float h, z;
 
     public float speed;
-    public float applySpeed;
 
     public int curFloor;
     public int curQuestFloor;
@@ -203,7 +202,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            applySpeed = speed;
             light.pointLightOuterRadius = 8;
         }
     }

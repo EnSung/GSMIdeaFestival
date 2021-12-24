@@ -105,7 +105,7 @@ public class MasterFieldOfView : MonoBehaviour
                         // 누군가 있으면
 
                         Debug.Log(rayHitedTarget.collider.name);
-                        player.canMove_master = true;
+                        player.canMove_master = true;    
                     }
                 }
             }

@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeskLamp : UsingItem
+public class WaterBasket : UsingItem
 {
-
     bool isTimerStart;
     float timer;
+
     public float destroyTime;
-    public GameObject light;
-    public override void OnTriggerEnter2D(Collider2D collision)
+    public Water water;
+    private void Awake()
     {
-        base.OnTriggerEnter2D(collision);
-
+        water = GetComponentInChildren<Water>();
     }
-
     private void Update()
     {
         if (isTimerStart)
@@ -26,6 +24,8 @@ public class DeskLamp : UsingItem
         {
             Destroy(gameObject);
         }
+
+        
     }
     public override void Use()
     {
@@ -33,16 +33,18 @@ public class DeskLamp : UsingItem
 
         if (hits == null)
         {
-            light.SetActive(true);
+            water.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            water.gameObject.GetComponent<Collider2D>().enabled = true;
             gameObject.transform.parent = null;
-            transform.position = (Vector2)transform.position + GameSceneManager.Instance.player.dirVec;
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            transform.position = (Vector2)transform.parent.position + GameSceneManager.Instance.player.dirVec;
+            GetComponent<SpriteRenderer>().enabled = true;
             GameSceneManager.Instance.player.usingItem = null;
             GetComponent<Collider2D>().enabled = true;
-
             isTimerStart = true;
         }
-
-
     }
+
+  
+
+
 }
