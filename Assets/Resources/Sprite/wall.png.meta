@@ -10,7 +10,7 @@ TextureImporter:
     second: tile_3
   - first:
       213: -4473554079132131015
-    second: tile_5
+    second: clothes
   - first:
       213: 5090018107685305776
     second: tile_6
@@ -244,12 +244,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_5
+      name: clothes
       rect:
         serializedVersion: 2
         x: 36
         y: 119
-        width: 18
+        width: 9
         height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
