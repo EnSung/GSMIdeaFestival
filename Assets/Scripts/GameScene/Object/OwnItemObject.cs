@@ -48,6 +48,10 @@ public class OwnItemObject : ScanningObject
 
             }
         }
+        else
+        {
+            UIManager.Instance.pop_UI("아무것도 들어있지않다.");
+        }
         
     }
 

@@ -33,6 +33,9 @@ public class Food : UsingItem
 
         GameSceneManager.Instance.player.canMove_any = true;
         GameSceneManager.Instance.player.hungryGauge += up_gauge;
+        if(GameSceneManager.Instance.player.hungryGauge > 0){
+            GameSceneManager.Instance.player.applySpeed = GameSceneManager.Instance.player.speed;   
+        }
         Destroy(this);
     }
 

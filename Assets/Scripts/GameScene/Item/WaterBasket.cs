@@ -29,7 +29,7 @@ public class WaterBasket : UsingItem
     }
     public override void Use()
     {
-        Collider2D hits = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.up, 0.3f);
+        Collider2D hits = Physics2D.OverlapCircle((Vector2)transform.position + (GameSceneManager.Instance.player.dirVec * -1), 0.3f);
 
         if (hits == null)
         {
@@ -38,7 +38,7 @@ public class WaterBasket : UsingItem
             Debug.Log(1);
             gameObject.transform.parent = null;
             Debug.Log(2);
-            gameObject.transform.position = (Vector2)transform.position +Vector2.up;
+            gameObject.transform.position = (Vector2)transform.position + (GameSceneManager.Instance.player.dirVec * -1);
             Debug.Log(3);
             itemImage.enabled = true;
             Debug.Log(4);

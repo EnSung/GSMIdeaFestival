@@ -25,7 +25,7 @@ TextureImporter:
     second: seat
   - first:
       213: 7871890050723223080
-    second: tile_10
+    second: chungso
   - first:
       213: -1087402324501320590
     second: door
@@ -349,7 +349,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_10
+      name: chungso
       rect:
         serializedVersion: 2
         x: 114

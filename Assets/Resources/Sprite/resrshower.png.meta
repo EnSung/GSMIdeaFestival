@@ -13,7 +13,7 @@ TextureImporter:
     second: se
   - first:
       213: 286024354110452079
-    second: resrshower_3
+    second: shower
   - first:
       213: 4272178266720179547
     second: toilet_wall
@@ -49,7 +49,7 @@ TextureImporter:
     second: resrshower_14
   - first:
       213: -3845629578089628499
-    second: resrshower_15
+    second: showercan
   - first:
       213: -6051301824755818733
     second: resrshower_16
@@ -241,7 +241,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resrshower_3
+      name: shower
       rect:
         serializedVersion: 2
         x: 146
@@ -493,7 +493,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: resrshower_15
+      name: showercan
       rect:
         serializedVersion: 2
         x: 121

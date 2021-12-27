@@ -103,8 +103,8 @@ public class MasterFieldOfView : MonoBehaviour
                             Debug.DrawLine(originPos, targetPos, Color.red);
 
                         // 누군가 있으면
-
-                        Debug.Log(rayHitedTarget.collider.name);
+                            
+    
                         player.canMove_master = true;    
                     }
                 }
