@@ -18,7 +18,6 @@ public class OwnItemObject : ScanningObject
     public override void Scan(PlayerController player)
     {
 
-        Debug.Log("ownItemObject Scan");
         if(ownItem != null)
         {
             if (ownItem.GetComponent<Item>().type == itemType.staticItem)
