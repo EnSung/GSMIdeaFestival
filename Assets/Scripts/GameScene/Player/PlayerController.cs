@@ -82,13 +82,16 @@ public class PlayerController : Unit
         Debug.DrawRay(transform.position, dirVec, new Color(0, 1, 0));
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dirVec, 0.7f, scanningMask);
 
+
         if (hit.collider != null)
         {
             scanObj = hit.collider;
+
         }
         else
         {
             scanObj = null;
+
         }
 
         #endregion

@@ -104,26 +104,6 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
             }
 
-            randomNum(ref floorNum, ref roomNum, ref total, ref objNum);
-
-            Debug.Log(total + "   " + objNum);
-
-            if (rooms[3][total].ownitemobjcts[objNum].ownItem == null)
-            {
-                rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[0 ]);
-
-            }
-
-            randomNum(ref floorNum, ref roomNum, ref total, ref objNum);
-
-            Debug.Log(total + "   " + objNum);
-
-            if (rooms[3][total].ownitemobjcts[objNum].ownItem == null)
-            {
-                rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[0]);
-
-            }
-
         }
     }
 

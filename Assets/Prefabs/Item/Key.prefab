@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4a12fee2b0ce74889fab5dc924409c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGetByPlayer: 0
   itemImage: {fileID: 203997797919720511}
-  itemName: "\uC5F4\uC1E0"
+  itemName: "\uC0AC\uAC10\uC2E4 \uC5F4\uC1E0"
   type: 1
