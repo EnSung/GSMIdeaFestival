@@ -14,6 +14,11 @@ public class UIManager : Singleton<UIManager>
     public Text usingItemName;
 
     public Text questText;
+
+    #region ownItemsUI
+    public GameObject ownItemPrefab;
+    public GameObject grid;
+    #endregion
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -77,5 +82,31 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    public void playerOwnItems_UI_Update()
+    {
+
+        if(grid.transform.childCount != 0)
+        {
+            var child = grid.GetComponentsInChildren<Transform>();
+
+
+            foreach (var iter in child)
+            {
+                if (iter != grid.transform)
+                {
+                    Destroy(iter.gameObject);
+                }
+            }
+        }
+        
+        foreach (Item item in player.ownItemList)
+         {
+            var obj = Instantiate(ownItemPrefab);
+            obj.transform.parent = grid.transform;
+            //obj.transform.localPosition = Vector2.zero;
+            obj.GetComponent<Image>().sprite = item.itemImage.sprite;
+            obj.GetComponent<Image>().color = item.itemImage.color;
+         }
+    }
 
 }

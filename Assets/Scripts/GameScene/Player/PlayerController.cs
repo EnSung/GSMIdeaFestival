@@ -22,9 +22,13 @@ public class PlayerController : Unit
     #endregion
 
 
+    #region flag
     public bool canMove_master;
     public bool canMove_any;
     bool isdeCreaseHungryGauge;
+    #endregion
+
+    int prev_ownItems_count;
     Vector2 moveDir;
     public Vector2 dirVec;
 
@@ -40,6 +44,7 @@ public class PlayerController : Unit
     public UnityEngine.Experimental.Rendering.Universal.Light2D light;
     void Start()    
     {
+        prev_ownItems_count = ownItemList.Count;
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         light = GetComponentInChildren<UnityEngine.Experimental.Rendering.Universal.Light2D>();
@@ -58,6 +63,8 @@ public class PlayerController : Unit
 
         //Debug.Log("curQF    "+curQuestFloor);
         //Debug.Log("curF"+ curFloor);
+
+        checkOwnItemsList();
         hungryGaugeCheck();
         if (canMove_master && canMove_any)
         {
@@ -222,6 +229,15 @@ public class PlayerController : Unit
                     hungryGauge -= decreaseAmount;
                 }
             }
+        }
+    }
+
+    void checkOwnItemsList()
+    {
+        if(ownItemList.Count != prev_ownItems_count)
+        {
+            UIManager.Instance.playerOwnItems_UI_Update();
+            prev_ownItems_count = ownItemList.Count;
         }
     }
 }

@@ -83,6 +83,7 @@ public class MasterFieldOfView : MonoBehaviour
                 if (angle <= m_horizontalViewHalfAngle)
                 {
                     RaycastHit2D rayHitedTarget = Physics2D.Raycast(originPos, dir, m_viewRadius, m_viewTargetMask);
+                    RaycastHit2D rayHitedTarget2 = Physics2D.Raycast(originPos, dir, m_viewRadius, m_viewObstacleMask);
                     if (rayHitedTarget)
                     {
 
@@ -92,8 +93,41 @@ public class MasterFieldOfView : MonoBehaviour
                             Debug.DrawLine(originPos, rayHitedTarget.point, Color.yellow);
                         }
 
+                        if (rayHitedTarget2.collider != null)
+                        {
+                            if (Vector2.Distance(transform.position, rayHitedTarget.transform.position) < Vector2.Distance(transform.position, rayHitedTarget2.transform.position))
+                            {
+                                Debug.Log(1);
+                                switch (master.master_Type)
+                                {
+                                    case MasterInRoom.master_type.observe_inside:
+                                        master.isFind = true;
+                                        break;
+                                    case MasterInRoom.master_type.observe_outside:
+                                        player.canMove_master = false;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                        else
+                        {
 
-                        player.canMove_master = false;
+                            switch (master.master_Type)
+                            {
+                                case MasterInRoom.master_type.observe_inside:
+                                    master.isFind = true;
+                                    break;
+                                case MasterInRoom.master_type.observe_outside:
+                                    player.canMove_master = false;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+
                     }
                     else
                     {
@@ -103,9 +137,18 @@ public class MasterFieldOfView : MonoBehaviour
                             Debug.DrawLine(originPos, targetPos, Color.red);
 
                         // 누군가 있으면
-                            
-    
-                        player.canMove_master = true;    
+
+                        switch (master.master_Type)
+                        {
+                            case MasterInRoom.master_type.observe_inside:
+                                Debug.Log(3);
+                                break;
+                            case MasterInRoom.master_type.observe_outside:
+                                player.canMove_master = true;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }

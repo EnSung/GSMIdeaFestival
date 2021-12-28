@@ -6,6 +6,7 @@ public class Door : Teleport
 {
     public bool isLock;
     public string neededItemName;
+    bool flag;
     public override void Scan(PlayerController player)
     {
         targetObj = player.gameObject;
@@ -19,9 +20,9 @@ public class Door : Teleport
             }
             else
             {
+
                 if (player.ownItemList == null)
                 {
-                    
                 }
                 else
                 {
@@ -31,8 +32,12 @@ public class Door : Teleport
                         {
                                 isLock = false;
                                 player.ownItemList.Remove(item);
+                            UIManager.Instance.pop_UI(neededItemName + "을 사용했다.");
+                            break;
                         }
                     }
+
+
                 }
                 // 잠겨있다 등 텍스트 띄우기
             }
@@ -52,6 +57,11 @@ public class Door : Teleport
                 GameSceneManager.Instance.playerTeleport(this.gameObject.GetComponent<Teleport>());
             }
             StartCoroutine(teleport());
+        }
+        else
+        {
+            UIManager.Instance.pop_UI("잠겨있다.");
+
         }
     }
 }   
