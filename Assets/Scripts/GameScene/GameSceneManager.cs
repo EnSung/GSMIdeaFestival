@@ -18,6 +18,12 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public PlayerController player;
 
     GameObject[] itemDrop;
+
+    [Header("boss")]
+    #region boss
+    public GameObject bossStartBang;
+    public GameObject canvas;
+    #endregion
     protected override void Awake()
     {
         for (int i = 1; i <= 5; i++)
@@ -71,7 +77,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
             doors[5].Add(System.Int32.Parse(door.gameObject.name), door);
         }
 
-        
+
 
         for (int i = 3; i <= 4; i++)
         {
@@ -95,8 +101,8 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
 
         #region ¡÷ºÆ
-        
-        int total = 0, floorNum=0,roomNum=0, objNum=0;
+
+        int total = 0, floorNum = 0, roomNum = 0, objNum = 0;
         /*
         randomNum(ref floorNum, ref roomNum, ref total, ref objNum);
 
@@ -211,7 +217,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
 
 
-        
+
 
     }
 
@@ -246,6 +252,21 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
     }
 
+    public void bossStart()
+    {
+        StartCoroutine(bossCoroutine());
+    }
+
+
+    IEnumerator bossCoroutine()
+    {
+        yield return null;
+
+        bossStartBang.SetActive(true);
+
+
+
+    }
 
 
 }

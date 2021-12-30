@@ -10,6 +10,7 @@ TagManager:
   - itemDrop
   - face
   - bed
+  - wall
   layers:
   - Default
   - TransparentFX
