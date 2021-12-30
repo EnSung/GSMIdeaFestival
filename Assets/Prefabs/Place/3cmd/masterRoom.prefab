@@ -105,7 +105,7 @@ Transform:
   - {fileID: 777703983632528065}
   - {fileID: 777703983685843288}
   m_Father: {fileID: 777703984156088757}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &777703983350701035
 GameObject:
@@ -577,7 +577,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 777703984156088757}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &777703983545014875
 MonoBehaviour:
@@ -661,8 +661,8 @@ GameObject:
   m_Component:
   - component: {fileID: 777703983632528065}
   - component: {fileID: 777703983632528066}
-  - component: {fileID: 777703983632528064}
   - component: {fileID: 777703983632528079}
+  - component: {fileID: 965963568198012703}
   m_Layer: 6
   m_Name: SmartphoneBag
   m_TagString: Untagged
@@ -680,7 +680,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 18.52, y: -9.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 777703984260546260}
   m_Father: {fileID: 777703983313202710}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -736,22 +737,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &777703983632528064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777703983632528067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbba875b3c8321443944a1433cadf5b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxGauge: 20
-  incleaseGauge: 2
-  decreaseSpeed: 2
-  gaugeBar: {fileID: 777703984997983503}
 --- !u!61 &777703983632528079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -778,6 +763,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &965963568198012703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777703983632528067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8bd74f28169b43459f4e9881a713bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxGauge: 80
+  incleaseGauge: 2
+  decreaseSpeed: 2
+  gaugeBar: {fileID: 777703984997983503}
+  smartPhonePrefab: {fileID: 6115829081802176041, guid: 9f3484aafa7da5d40a2044336278bb61,
+    type: 3}
 --- !u!1 &777703983685843289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,7 +1030,6 @@ Transform:
   m_Children:
   - {fileID: 8127499678568937163}
   - {fileID: 777703983631317876}
-  - {fileID: 777703984260546260}
   - {fileID: 777703983313202710}
   - {fileID: 777703985196321827}
   - {fileID: 777703985222245293}
@@ -1067,12 +1069,12 @@ RectTransform:
   m_LocalScale: {x: 0.024737, y: 0.024987, z: 1}
   m_Children:
   - {fileID: 777703984997983488}
-  m_Father: {fileID: 777703984156088757}
-  m_RootOrder: 2
+  m_Father: {fileID: 777703983632528065}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.761411, y: 4.24772}
+  m_AnchoredPosition: {x: 0.21860003, y: 2.4777002}
   m_SizeDelta: {x: 118.9329, y: 157.4671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &777703984260546257
@@ -2176,7 +2178,7 @@ Transform:
   - {fileID: 777703985125295558}
   - {fileID: 777703985333582019}
   m_Father: {fileID: 777703984156088757}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &777703985002172951
 SpriteRenderer:
@@ -2406,7 +2408,7 @@ Transform:
   - {fileID: 777703983416933506}
   - {fileID: 777703984893686542}
   m_Father: {fileID: 777703984156088757}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &777703985222245294
 GameObject:
@@ -2437,7 +2439,7 @@ Transform:
   m_LocalScale: {x: 0.07000001, y: 0.07000001, z: 1}
   m_Children: []
   m_Father: {fileID: 777703984156088757}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &777703985222245292
 SpriteRenderer:

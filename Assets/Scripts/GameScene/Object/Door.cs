@@ -25,7 +25,6 @@ public class Door : Teleport
                         if(item.itemName == neededItemName)
                         {
                                 isLock = false;
-                                player.ownItemList.Remove(item);
                             UIManager.Instance.pop_UI(neededItemName + "을 사용했다.");
                             return;
                         }

@@ -99,7 +99,7 @@ public class MasterInRoom : MonoBehaviour
 
             questionMark.SetActive(true);
 
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.57f);
 
             questionMark.SetActive(false);
             

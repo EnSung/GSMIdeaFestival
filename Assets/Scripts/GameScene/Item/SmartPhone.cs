@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wallet : Item
+public class SmartPhone : Item
 {
-    private void Update()
+    void Update()
     {
         if (isGetByPlayer)
         {
 
-            GameSceneManager.Instance.questClearDict[4] = true;
+            GameSceneManager.Instance.questClearDict[3] = true;
         }
-
     }
 }

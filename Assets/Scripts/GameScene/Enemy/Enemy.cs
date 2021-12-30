@@ -214,6 +214,7 @@ public class Enemy : Unit
             {
                 timer = 0; // 0으로만들고
                 timer_flag = false; // 플래그 비활성화
+                float timer2 = Time.time + 4.5f;
                 while (Vector2.Distance(transform.position, originPos) >= 0.1f) // 다시 위치로 돌아가기
                 {
                     yield return null;
@@ -224,16 +225,28 @@ public class Enemy : Unit
 
                     transform.position = Vector2.MoveTowards(transform.position, originPos, applySpeed * Time.deltaTime);
                     lookat2D(originPos);
-                    if (!isFollowingCancel) {
+                    if (!isFollowingCancel)
+                    {
                         break;
                     }
+
+
+                    if(timer2 < Time.time)
+                    {
+                        if (Vector2.Distance(originPos, transform.position) >= 50)
+                        {
+                            transform.position = originPos;
+                        }
+                    }
+                   
+
                 }
                 if (isFollowingCancel)
                 {
                     state = enemyState.patrol;
                     break;
                 }
-                
+
             }
             if (!teleport_distance_flag) // 텔레포트 상태가 아니면
             {
@@ -374,7 +387,7 @@ public class Enemy : Unit
 
         if (hit == null)
         {
-                isFollowingCancel = true;
+            isFollowingCancel = true;
         }
         else
         {

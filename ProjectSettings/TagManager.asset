@@ -7,6 +7,9 @@ TagManager:
   - enemy
   - obstacle
   - ToRoom
+  - itemDrop
+  - face
+  - bed
   layers:
   - Default
   - TransparentFX

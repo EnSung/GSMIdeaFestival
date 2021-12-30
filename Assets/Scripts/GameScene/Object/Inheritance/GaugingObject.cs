@@ -16,12 +16,12 @@ public class GaugingObject : ScanningObject
     float time;
 
     [SerializeField] Slider gaugeBar;
-    private void Start()
+    protected virtual void Start()
     {
         gaugeBar.maxValue = maxGauge;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
 
         time += Time.deltaTime;

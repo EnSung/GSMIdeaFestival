@@ -26,10 +26,11 @@ public class UIManager : Singleton<UIManager>
 
     }
 
-    private void Update()
+    void Update()
     {
         set_hungryGauge();
         set_usingItem();
+        questTextUpdate(player.curQuestFloor);
         questColorUpdate(player.curQuestFloor);
     }
     public void pop_UI(string name)
@@ -64,8 +65,6 @@ public class UIManager : Singleton<UIManager>
 
     public void questTextUpdate(int floor)
     {
-        
-
         questText.text = GameManager.Instance.questDescription[floor];
     }
 

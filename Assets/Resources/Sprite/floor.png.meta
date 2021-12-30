@@ -7,7 +7,7 @@ TextureImporter:
     second: tile_2
   - first:
       213: -113938230342917849
-    second: tile_3
+    second: laptop
   - first:
       213: -4473554079132131015
     second: washingromm
@@ -34,7 +34,7 @@ TextureImporter:
     second: tile_12
   - first:
       213: 738034448054865129
-    second: tile_13
+    second: trashCan
   - first:
       213: 1007916862798588756
     second: blue_left_up
@@ -223,7 +223,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_3
+      name: laptop
       rect:
         serializedVersion: 2
         x: 94
@@ -412,7 +412,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_13
+      name: trashCan
       rect:
         serializedVersion: 2
         x: 93

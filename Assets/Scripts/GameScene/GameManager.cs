@@ -8,7 +8,8 @@ public class GameManager : Singleton<GameManager>
 {
 
     public List<GameObject> itemsPrefabs = new List<GameObject>();
-
+    public List<Sprite> face = new List<Sprite>();
+    public List<Sprite> bed = new List<Sprite>();
     public Dictionary<int, string> questDescription = new Dictionary<int, string>();
     protected override void Awake()
     {
@@ -33,6 +34,11 @@ public class GameManager : Singleton<GameManager>
         foreach (KeyValuePair<string, JToken> pair in parsedObj)
         {
             questDescription.Add(System.Int32.Parse(pair.Key), pair.Value.ToString());
+        }
+
+        foreach (var item in questDescription.Values)
+        {
+            Debug.Log(item);
         }
     }
 }
