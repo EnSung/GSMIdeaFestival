@@ -16,13 +16,17 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public bool isGameover;
 
     public PlayerController player;
-
+    public Boss boss;
     GameObject[] itemDrop;
 
     [Header("boss")]
     #region boss
     public GameObject bossStartBang;
     public GameObject canvas;
+
+    public Transform teleportPos;
+
+    public bool isbossStart;
     #endregion
     protected override void Awake()
     {
@@ -41,8 +45,10 @@ public class GameSceneManager : Singleton<GameSceneManager>
     {
         rooms[3] = new Dictionary<int, Room>();
         rooms[4] = new Dictionary<int, Room>();
+        rooms[5] = new Dictionary<int, Room>();
         doors[3] = new Dictionary<int, Door>();
         doors[4] = new Dictionary<int, Door>();
+        doors[5] = new Dictionary<int, Door>();
 
         Room[] roms_3 = GameObject.Find("Floor_3").transform.Find("Room").GetComponentsInChildren<Room>();
         Door[] dors_3 = GameObject.Find("Floor_3").transform.Find("Door").GetComponentsInChildren<Door>();
@@ -264,8 +270,11 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
         bossStartBang.SetActive(true);
 
+        player.light.pointLightOuterRadius = 30f;
 
+        player.transform.position = teleportPos.position;
 
+        isbossStart = true;
     }
 
 

@@ -35,17 +35,11 @@ public class WaterBasket : UsingItem
         {
             water.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             water.gameObject.GetComponent<Collider2D>().enabled = true;
-            Debug.Log(1);
             gameObject.transform.parent = null;
-            Debug.Log(2);
             gameObject.transform.position = (Vector2)transform.position + (GameSceneManager.Instance.player.dirVec * -1);
-            Debug.Log(3);
             itemImage.enabled = true;
-            Debug.Log(4);
             GetComponent<Collider2D>().enabled = true;
-            Debug.Log(5);
             GameSceneManager.Instance.player.usingItem = null;
-            Debug.Log(6);
             isTimerStart = true;
         }
     }

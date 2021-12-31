@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class bullet : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class bullet : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
 
-        rigid.velocity = (tar.transform.position - transform.position).normalized * speed;
+        rigid.velocity = (GameSceneManager.Instance.player.transform.position - transform.position).normalized * speed;
     }
 
     void Update()
@@ -28,6 +29,10 @@ public class bullet : MonoBehaviour
         {
             Vector2 inDir = Vector2.Reflect(targetVel, collision.contacts[0].normal);
             rigid.velocity = inDir;
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }

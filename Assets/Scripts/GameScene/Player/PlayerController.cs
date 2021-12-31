@@ -205,15 +205,19 @@ public class PlayerController : Unit
 
     void hungryGaugeCheck()
     {
-        if (hungryGauge <= 0)
+        if (!GameSceneManager.Instance.isbossStart)
         {
-            applySpeed = 2;
-            light.pointLightOuterRadius = 4;
+            if (hungryGauge <= 0)
+            {
+                applySpeed = 2;
+                light.pointLightOuterRadius = 4;
+            }
+            else
+            {
+                light.pointLightOuterRadius = 8;
+            }
         }
-        else
-        {
-            light.pointLightOuterRadius = 8;
-        }
+        
     }
     private void OnDrawGizmosSelected()
     {
@@ -222,7 +226,7 @@ public class PlayerController : Unit
 
     IEnumerator set_hungryGauge()
     {
-        while (!GameSceneManager.Instance.isGameover)
+        while (!GameSceneManager.Instance.isGameover && !GameSceneManager.Instance.isbossStart)
         {
             if (isdeCreaseHungryGauge)
             {
