@@ -53,6 +53,7 @@ public class BossAttackItem : UsingItem
         if (collision.gameObject.CompareTag("boss"))
         {
             GameSceneManager.Instance.boss.Damage();
+            Destroy(gameObject);
         }
     }
 }

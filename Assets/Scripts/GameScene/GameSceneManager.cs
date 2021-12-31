@@ -22,7 +22,8 @@ public class GameSceneManager : Singleton<GameSceneManager>
     [Header("boss")]
     #region boss
     public GameObject bossStartBang;
-    public GameObject canvas;
+    public GameObject mainCanvas;
+    public GameObject bossCanvas;
 
     public Transform teleportPos;
 
@@ -260,16 +261,21 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
     public void bossStart()
     {
-        StartCoroutine(bossCoroutine());
+        StartCoroutine(bossStartCoroutine());
     }
 
+    public void bossEnd()
+    {
+        StartCoroutine(bossEndCoroutine());
+    }
 
-    IEnumerator bossCoroutine()
+    IEnumerator bossStartCoroutine()
     {
         yield return null;
 
         bossStartBang.SetActive(true);
 
+        mainCanvas.SetActive(false);
         player.light.pointLightOuterRadius = 30f;
 
         player.transform.position = teleportPos.position;
@@ -277,5 +283,20 @@ public class GameSceneManager : Singleton<GameSceneManager>
         isbossStart = true;
     }
 
+
+
+    IEnumerator bossEndCoroutine()
+    {
+        yield return null;
+
+        bossStartBang.SetActive(true);
+
+        mainCanvas.SetActive(false);
+        player.light.pointLightOuterRadius = 30f;
+
+        player.transform.position = teleportPos.position;
+
+        isbossStart = true;
+    }
 
 }

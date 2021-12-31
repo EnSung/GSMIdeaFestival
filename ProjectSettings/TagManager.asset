@@ -12,6 +12,7 @@ TagManager:
   - bed
   - wall
   - itemSpawnPos
+  - boss
   layers:
   - Default
   - TransparentFX

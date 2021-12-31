@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.Rendering.LWRP;
 
 
@@ -40,6 +41,7 @@ public class PlayerController : Unit
     public List<Item> ownItemList = new List<Item>();
     public float radius;
 
+    public int hp = 1;
     public LayerMask scanningMask;
     public UnityEngine.Experimental.Rendering.Universal.Light2D light;
     void Start()    
@@ -64,6 +66,7 @@ public class PlayerController : Unit
         //Debug.Log("curQF    "+curQuestFloor);
         //Debug.Log("curF"+ curFloor);
 
+        die();
         checkOwnItemsList();
         hungryGaugeCheck();
         if (canMove_master && canMove_any)
@@ -245,6 +248,14 @@ public class PlayerController : Unit
         {
             UIManager.Instance.playerOwnItems_UI_Update();
             prev_ownItems_count = ownItemList.Count;
+        }
+    }
+
+    void die()
+    {
+        if(hp <= 0)
+        {
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }

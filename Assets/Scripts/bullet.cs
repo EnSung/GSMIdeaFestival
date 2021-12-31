@@ -32,7 +32,7 @@ public class bullet : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("GameOverScene");
+            GameSceneManager.Instance.player.hp -= 1;
         }
     }
 }
