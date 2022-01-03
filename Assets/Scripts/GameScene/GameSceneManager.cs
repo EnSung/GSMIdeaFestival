@@ -31,6 +31,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public SpriteRenderer sagamTeacher;
 
     public bool isbossStart;
+    public bool isBossRetry;
     #endregion
 
     public bool ItemChoose;
@@ -43,9 +44,18 @@ public class GameSceneManager : Singleton<GameSceneManager>
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         linkMap();
         mapSetting();
-
+        Instantiate(GameManager.Instance.ChooseItemPrefab);
     }
 
+
+    private void Start()
+    {
+        SoundManager.Instance.BgSoundPlay(GameManager.Instance.normalGameMusic);
+    }
+    private void Update()
+    {
+        
+    }
 
     public void linkMap()
     {
@@ -91,7 +101,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
 
 
-        for (int i = 3; i <= 4; i++)
+        for (int i = 3; i <= 5; i++)
         {
 
             for (int j = 1; j <= 20; j++)
@@ -105,6 +115,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
                     rooms[i][num].door.transform.Find("startPos").transform;
 
 
+                rooms[i][num].door.name = num + "ȣ";
             }
         }
     }
@@ -209,21 +220,15 @@ public class GameSceneManager : Singleton<GameSceneManager>
         Debug.Log(total + "   " + objNum);
 
         rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[0]);
-        for (int i = 0; i < 30; i++)
+
+
+        foreach (var item in itemDrop)
+        {
+            item.GetComponent<OwnItemObject>().itemRandom();
+        }
         {
 
-            flag = false;
-            while (!flag)
-            {
-                index = Random.Range(0, itemDrop.Length);
-
-                if (itemDrop[index].GetComponent<OwnItemObject>().ownItem == null)
-                {
-
-
-                    flag = true;
-                }
-            }
+           
 
             Debug.Log("itemDrop in " + itemDrop[index].transform.parent.name + " / " + itemDrop[index].name);
             
@@ -285,6 +290,16 @@ public class GameSceneManager : Singleton<GameSceneManager>
     {
         yield return null;
 
+
+
+        boss.isDie = false;
+        while (boss.bullets.Count != 0)
+        {
+            Destroy(boss.bullets.Dequeue().gameObject);
+        }
+
+        boss.Hp = boss.maxHp;
+
         player.canMove_any = false;
         mainCanvas.SetActive(false);
 
@@ -302,7 +317,8 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
         isbossStart = true;
         player.canMove_any = true;
-        
+
+        SoundManager.Instance.BgSoundPlay(GameManager.Instance.BossMusic);
         
     }
 
@@ -325,6 +341,9 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
         sagamTeacher.sprite = GameManager.Instance.sagamDie;
 
+        sagamTeacher.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+
+        
     }
 
 }

@@ -69,7 +69,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
             // 따라서, 추가로 생성된 인스턴스를 삭제하고 먼저 씬에 배치한 싱글턴 객체가 작동할 수 있도록 한다.
             else
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
     }

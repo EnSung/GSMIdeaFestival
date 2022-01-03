@@ -65,7 +65,7 @@ public class Stair : Teleport
         }
         else
         {
-            UIManager.Instance.pop_UI("퀘스트를 완료해 주세요");
+            UIManager.Instance.pop_UI("아직 할 일이 남아있다.");
         }
     }
 }

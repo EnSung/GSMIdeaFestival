@@ -9,6 +9,8 @@ public class SoundManager : Singleton<SoundManager>
     {
         base.Awake();
         DontDestroyOnLoad(this);
+
+        BgSoundPlay(GameManager.Instance.LobbyMusic);
     }
     public AudioSource bgSound;
      public void SFXPlay(string sfxSound, AudioClip clip)
@@ -24,9 +26,9 @@ public class SoundManager : Singleton<SoundManager>
 
     public void BgSoundPlay(AudioClip clip)
     {
+        bgSound.Stop();
         bgSound.clip = clip;
         bgSound.loop = true;
-        bgSound.volume = 0.1f;
         bgSound.Play();
     }
 }

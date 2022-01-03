@@ -15,10 +15,15 @@ public class UIManager : Singleton<UIManager>
 
     public Text questText;
 
+    [Header("ownItemUI")]
     #region ownItemsUI
     public GameObject ownItemPrefab;
     public GameObject grid;
     #endregion
+
+    [Header("DIE")]
+    public GameObject diePanel;
+    public Transform dieTeleport;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -108,6 +113,15 @@ public class UIManager : Singleton<UIManager>
             obj.GetComponent<Image>().sprite = item.itemImage.sprite;
             obj.GetComponent<Image>().color = item.itemImage.color;
          }
+    }
+
+
+    public void DIE()
+    {
+        diePanel.SetActive(true);
+        SoundManager.Instance.bgSound.Stop();
+        SoundManager.Instance.SFXPlay("게임오버", GameManager.Instance.gameoverSFX);
+        GameSceneManager.Instance.player.transform.position = dieTeleport.position;
     }
 
 }

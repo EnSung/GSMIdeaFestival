@@ -14,17 +14,17 @@ public class Boss : MonoBehaviour
 
     public bool clear_flag;
     public int maxHp;
-    [SerializeField] int Hp;
+    [SerializeField] public int Hp;
     public GameObject[] itemSpawnPos;
     bool flag;
 
-    bool isDie;
+    public bool isDie;
     public Queue<GameObject> bullets = new Queue<GameObject>();
     [SerializeField] Slider Hp_UI;
-    void Start()
+    void Awake()
     {
         Hp = maxHp;
-        Hp_UI.maxValue = maxHp;
+        Hp_UI.maxValue = this.maxHp;
         itemSpawnPos = GameObject.FindGameObjectsWithTag("itemSpawnPos");
         timer = Time.time + 3;
     }

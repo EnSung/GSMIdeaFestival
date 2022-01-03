@@ -13,6 +13,7 @@ TagManager:
   - wall
   - itemSpawnPos
   - boss
+  - ChooseItem
   layers:
   - Default
   - TransparentFX

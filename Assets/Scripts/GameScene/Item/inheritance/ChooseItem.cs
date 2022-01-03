@@ -9,7 +9,9 @@ public class ChooseItem : Item
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
+        GameSceneManager.Instance.player.hungryGauge = 100;
         GameSceneManager.Instance.ItemChoose = true;
+        choosingItem = this.gameObject;
     }
 
     void Start()

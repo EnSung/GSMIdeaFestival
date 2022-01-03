@@ -122,6 +122,7 @@ public class Enemy : Unit
     IEnumerator patrolCroutine()
     {
 
+
         patrol_flag = true;
         curWarnSp.gameObject.SetActive(true);
         normalWarnSp.gameObject.SetActive(true);
@@ -202,6 +203,8 @@ public class Enemy : Unit
         bool isOut = false;
         bool teleport_distance_flag = false;
 
+
+        SoundManager.Instance.BgSoundPlay(GameManager.Instance.FollowingMusic);
         int cnt = 0;
         while (state == enemyState.following) // 따라가는 상태일때
         {
@@ -215,6 +218,7 @@ public class Enemy : Unit
                 timer = 0; // 0으로만들고
                 timer_flag = false; // 플래그 비활성화
                 float timer2 = Time.time + 4.5f;
+                SoundManager.Instance.BgSoundPlay(GameManager.Instance.normalGameMusic);
                 while (Vector2.Distance(transform.parent.position, originPos) >= 0.1f) // 다시 위치로 돌아가기
                 {
                     yield return null;
@@ -246,6 +250,7 @@ public class Enemy : Unit
                     state = enemyState.patrol;
                     break;
                 }
+                SoundManager.Instance.BgSoundPlay(GameManager.Instance.FollowingMusic);
 
             }
             if (!teleport_distance_flag) // 텔레포트 상태가 아니면

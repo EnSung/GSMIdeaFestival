@@ -260,7 +260,8 @@ public class PlayerController : Unit
     {
         if(hp <= 0)
         {
-            SceneManager.LoadScene("GameOverScene");
+            canMove_any = false;
+            UIManager.Instance.DIE();
         }
     }
 }

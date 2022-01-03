@@ -45,6 +45,10 @@ public class OwnItemObject : ScanningObject
 
                     ownItem = null;
                 }
+                else if(player.usingItem)
+                {
+                    UIManager.Instance.pop_UI(ownItem.GetComponent<Item>().itemName + "이 있지만 이미 무언갈 가지고있다.");
+                }
 
 
             }
@@ -56,6 +60,30 @@ public class OwnItemObject : ScanningObject
         
     }
 
+    public void itemRandom()
+    {
+        int range = Random.Range(1, 101);
+        int index;
+
+        if(range <= 80 || ownItem != null)
+        {
+            return;
+        }
+        else if(range >= 81 && range <= 90)
+        {
+            index = 2;
+        }
+        else if(range >= 91 && range <= 95)
+        {
+            index = 3;
+        }
+        else
+        {
+            index = 4;
+        }
+
+        itemSpawn(GameManager.Instance.itemsPrefabs[index]);
+    }
     public void itemSpawn(GameObject obj)
     {
         ownItem = Instantiate(obj);

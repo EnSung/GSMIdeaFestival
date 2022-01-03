@@ -9,7 +9,7 @@ public class siwan : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("GameOverScene");
+            LoadingSceneController.LoadScene("GameOverScene");
         }
     }
 }
