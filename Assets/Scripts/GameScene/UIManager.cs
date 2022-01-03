@@ -58,6 +58,7 @@ public class UIManager : Singleton<UIManager>
         if(player.usingItem != null)
         {
             usingItemName.gameObject.SetActive(true);
+            usingItemImage.gameObject.SetActive(true);
             usingItemImage.sprite = player.usingItem.itemImage.sprite;
             usingItemImage.color = player.usingItem.itemImage.color;
             usingItemName.text = player.usingItem.itemName;
@@ -65,6 +66,7 @@ public class UIManager : Singleton<UIManager>
         else
         {
             usingItemName.gameObject.SetActive(false);
+            usingItemImage.gameObject.SetActive(false);
             usingItemImage.color = new Color(159, 159, 159);
         }
 

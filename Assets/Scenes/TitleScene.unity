@@ -1713,7 +1713,7 @@ MonoBehaviour:
   ClearMusic: {fileID: 0}
   btnClickSFX: {fileID: 8300000, guid: 4a31872a8c062af4b8435e37283402fb, type: 3}
   gameoverSFX: {fileID: 8300000, guid: a853a7b9627f9554e9457d21c649649d, type: 3}
-  gameClearSFX: {fileID: 8300000, guid: a853a7b9627f9554e9457d21c649649d, type: 3}
+  gameClearSFX: {fileID: 8300000, guid: c1a9ab7b6fdad8a4c976b154046ddb16, type: 3}
 --- !u!4 &1840145867
 Transform:
   m_ObjectHideFlags: 0

@@ -63,4 +63,30 @@ public class WaterBasket : UsingItem
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            if (!isCreate)
+            {
+                if (collision.collider.GetComponent<PlayerController>().usingItem == null)
+                {
+                    collision.collider.GetComponent<PlayerController>().usingItem = this;
+                    this.isGetByPlayer = true;
+                    transform.parent = collision.transform;
+                    transform.localPosition = Vector2.zero;
+                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+                    GetComponent<Collider2D>().enabled = false;
+
+                }
+                else
+                {
+                    UIManager.Instance.pop_UI("이미 사용아이템을 가지고있다.");
+                }
+            }
+
+        }
+    }
+
 }

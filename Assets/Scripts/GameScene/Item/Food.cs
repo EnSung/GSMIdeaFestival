@@ -36,7 +36,9 @@ public class Food : UsingItem
         if(GameSceneManager.Instance.player.hungryGauge > 0){
             GameSceneManager.Instance.player.applySpeed = GameSceneManager.Instance.player.speed;   
         }
-        Destroy(this);
+
+        GameSceneManager.Instance.player.usingItem = null;
+        Destroy(gameObject);
     }
 
 

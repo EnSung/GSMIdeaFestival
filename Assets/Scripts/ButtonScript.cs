@@ -74,7 +74,7 @@ public class ButtonScript : MonoBehaviour
         GameSceneManager.Instance.player.canMove_any = true;
         UIManager.Instance.diePanel.SetActive(false);
 
-        GameSceneManager.Instance.boss.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.sagamNormal;
+        GameSceneManager.Instance.sagamTeacher.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.sagamNormal;
         GameSceneManager.Instance.bossStartBang.SetActive(false);
 
         SoundManager.Instance.BgSoundPlay(GameManager.Instance.normalGameMusic);
