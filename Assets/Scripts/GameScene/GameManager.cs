@@ -28,11 +28,13 @@ public class GameManager : Singleton<GameManager>
     public AudioClip BossMusic;
     public AudioClip LobbyMusic;
     public AudioClip FollowingMusic;
+    public AudioClip ClearMusic;
 
 
     [Header("SFX")]
     public AudioClip btnClickSFX;
     public AudioClip gameoverSFX;
+    public AudioClip gameClearSFX;
     protected override void Awake()
     {
         DontDestroyOnLoad(this);

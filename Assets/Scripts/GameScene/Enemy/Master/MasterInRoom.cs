@@ -132,6 +132,7 @@ public class MasterInRoom : MonoBehaviour
         bangMark.SetActive(true);
         yield return new WaitForSeconds(0.6f);
 
+        SoundManager.Instance.bgSound.Stop();
             SceneManager.LoadScene("GameOverScene");
 
         find_flag = false;

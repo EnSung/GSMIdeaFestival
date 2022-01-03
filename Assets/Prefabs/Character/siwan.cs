@@ -9,7 +9,8 @@ public class siwan : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            LoadingSceneController.LoadScene("GameOverScene");
+            SoundManager.Instance.bgSound.Stop();
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }
