@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
     public int cnt;
     public int cntTab;
 
+    public bool clear_flag;
     public int maxHp;
     [SerializeField] int Hp;
     public GameObject[] itemSpawnPos;
@@ -86,6 +87,12 @@ public class Boss : MonoBehaviour
         while(bullets.Count != 0)
         {
             Destroy(bullets.Dequeue().gameObject);
+        }
+
+        if (!clear_flag)
+        {
+            GameSceneManager.Instance.bossEnd();
+            clear_flag = true;
         }
     }
 }

@@ -11,6 +11,10 @@ public class GameManager : Singleton<GameManager>
     public List<Sprite> face = new List<Sprite>();
     public List<Sprite> bed = new List<Sprite>();
     public Dictionary<int, string> questDescription = new Dictionary<int, string>();
+
+
+    public Sprite sagamAngry;
+    public Sprite sagamDie;
     protected override void Awake()
     {
         setJson();

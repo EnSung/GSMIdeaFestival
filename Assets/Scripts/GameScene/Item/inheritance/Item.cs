@@ -31,6 +31,7 @@ public class Item : MonoBehaviour
             transform.parent = collision.transform;
             transform.localPosition = Vector2.zero;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;
         }
     }
 }

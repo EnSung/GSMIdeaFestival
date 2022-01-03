@@ -212,12 +212,17 @@ public class PlayerController : Unit
         {
             if (hungryGauge <= 0)
             {
-                applySpeed = 2;
+                applySpeed = 3;
                 light.pointLightOuterRadius = 4;
             }
             else
             {
                 light.pointLightOuterRadius = 8;
+            }
+
+            if(hungryGauge > 100)
+            {
+                hungryGauge = 100;
             }
         }
         

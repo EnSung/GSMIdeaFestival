@@ -39,6 +39,10 @@ public class UsingItem : Item
                 GetComponent<Collider2D>().enabled = false;
 
             }
+            else
+            {
+                UIManager.Instance.pop_UI("이미 사용아이템을 가지고있다.");
+            }
 
         }
     }

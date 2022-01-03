@@ -49,17 +49,17 @@ public class Enemy : Unit
 
     private void Start()
     {
-        fieldOfView = GetComponent<EnemyFieldOfView>();
+        fieldOfView = GetComponentInChildren<EnemyFieldOfView>();
         curWarnSp = patrolWarnSp;
 
         fieldOfView.m_horizontalViewAngle = curWarnSp.angle;
         fieldOfView.m_viewRadius = curWarnSp.distance;
 
-        collider = GetComponent<Collider2D>();
+        collider = GetComponentInParent<Collider2D>();
 
 
         player = GameObject.FindGameObjectWithTag("Player");
-        originPos = transform.position;
+        originPos = transform.parent.position;
 
 
 
@@ -132,11 +132,11 @@ public class Enemy : Unit
         while (state == enemyState.patrol)
         {
 
-            while (Vector2.Distance((Vector2)transform.position, targetPos) >= 0.1f)
+            while (Vector2.Distance((Vector2)transform.parent.position, targetPos) >= 0.1f)
             {
                 if (state != enemyState.patrol) break;
 
-                transform.position = Vector2.MoveTowards(transform.position, targetPos, applySpeed * Time.deltaTime);
+                transform.parent.position = Vector2.MoveTowards(transform.parent.position, targetPos, applySpeed * Time.deltaTime);
                 yield return null;
 
             }
@@ -153,14 +153,14 @@ public class Enemy : Unit
             yield return new WaitForSeconds(1f);
 
 
-            while (Vector2.Distance((Vector2)transform.position, originPos) >= 0.1f)
+            while (Vector2.Distance((Vector2)transform.parent.position, originPos) >= 0.1f)
             {
 
                 if (state != enemyState.patrol) break;
 
 
 
-                transform.position = Vector2.MoveTowards(transform.position, originPos, applySpeed * Time.deltaTime);
+                transform.parent.position = Vector2.MoveTowards(transform.parent.position, originPos, applySpeed * Time.deltaTime);
                 yield return null;
 
             }
@@ -215,7 +215,7 @@ public class Enemy : Unit
                 timer = 0; // 0으로만들고
                 timer_flag = false; // 플래그 비활성화
                 float timer2 = Time.time + 4.5f;
-                while (Vector2.Distance(transform.position, originPos) >= 0.1f) // 다시 위치로 돌아가기
+                while (Vector2.Distance(transform.parent.position, originPos) >= 0.1f) // 다시 위치로 돌아가기
                 {
                     yield return null;
                     collider.enabled = false;
@@ -223,7 +223,7 @@ public class Enemy : Unit
 
                     applySpeed = speed;
 
-                    transform.position = Vector2.MoveTowards(transform.position, originPos, applySpeed * Time.deltaTime);
+                    transform.parent.position = Vector2.MoveTowards(transform.parent.position, originPos, applySpeed * Time.deltaTime);
                     lookat2D(originPos);
                     if (!isFollowingCancel)
                     {
@@ -233,9 +233,9 @@ public class Enemy : Unit
 
                     if(timer2 < Time.time)
                     {
-                        if (Vector2.Distance(originPos, transform.position) >= 50)
+                        if (Vector2.Distance(originPos, transform.parent.position) >= 50)
                         {
-                            transform.position = originPos;
+                            transform.parent.position = originPos;
                         }
                     }
                    
@@ -251,7 +251,7 @@ public class Enemy : Unit
             if (!teleport_distance_flag) // 텔레포트 상태가 아니면
             {
 
-                dis = Vector2.Distance(transform.position, player.transform.position); // 거리 갱신
+                dis = Vector2.Distance(transform.parent.position, player.transform.position); // 거리 갱신
             }
 
             if (GameSceneManager.Instance.isTeleport) // 텔레포트했다면
@@ -285,7 +285,8 @@ public class Enemy : Unit
 
                 if (!isOut) // 플래그가 활성화 되지않았다면
                 {
-                    this.transform.position = GameSceneManager.Instance.playerTeleportObject.transform.position; // 위치를 플레이어가 이동했던 물체로 이동.
+                    collider.enabled = true;
+                    transform.parent.position = GameSceneManager.Instance.playerTeleportObject.transform.position; // 위치를 플레이어가 이동했던 물체로 이동.
 
                 }
 
@@ -326,7 +327,7 @@ public class Enemy : Unit
                 {
                     collider.enabled = true; // 콜라이더 활성화
                     lookat2D(player.transform.position); // 플레이어 바라보기
-                    transform.position = Vector2.MoveTowards(transform.position, player.transform.position, applySpeed * Time.deltaTime); // 플레이어쪽으로 걸어가기
+                    transform.parent.position = Vector2.MoveTowards(transform.parent.position, player.transform.position, applySpeed * Time.deltaTime); // 플레이어쪽으로 걸어가기
                 }
 
             }
@@ -403,13 +404,7 @@ public class Enemy : Unit
 
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            SceneManager.LoadScene("GameOverScene");
-        }
-    }
+    
 }
 
 

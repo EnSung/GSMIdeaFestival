@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : Item
+public class hood : ChooseItem
 {
-    void Start()
-    {
-        
-    }
-
-
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-    }
+        GameSceneManager.Instance.player.hp += 1;
 
+        UIManager.Instance.pop_UI(itemName + "¿ª »πµÊ«ﬂ¥Ÿ." +
+            "HP∞° 1 ¡ı∞°«ﬂ¥Ÿ.");
+    }
 }

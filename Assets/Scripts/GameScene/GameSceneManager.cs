@@ -25,10 +25,15 @@ public class GameSceneManager : Singleton<GameSceneManager>
     public GameObject mainCanvas;
     public GameObject bossCanvas;
 
+    public Collider2D bossStartCollider;
     public Transform teleportPos;
+    public Transform clearTeleportPos;
+    public SpriteRenderer sagamTeacher;
 
     public bool isbossStart;
     #endregion
+
+    public bool ItemChoose;
     protected override void Awake()
     {
         for (int i = 1; i <= 5; i++)
@@ -105,7 +110,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
     }
     public void mapSetting()
     {
-
+        questClearDict[2] = true;
 
         #region 주석
 
@@ -163,6 +168,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
         #endregion
 
+        #region 랜덤 오브젝트 스프라이트 변경
         GameObject[] faces = GameObject.FindGameObjectsWithTag("face");
 
         int faceIndex;
@@ -180,6 +186,8 @@ public class GameSceneManager : Singleton<GameSceneManager>
             bedIndex = Random.Range(0, GameManager.Instance.bed.Count);
             item.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.bed[bedIndex];
         }
+        #endregion
+
         itemDrop = GameObject.FindGameObjectsWithTag("itemDrop");
 
         int index = 0;
@@ -192,7 +200,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
         Debug.Log(total + "   " + objNum);
 
-        rooms[4][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[2]);
+        rooms[4][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[1]);
 
 
         randomNum(3, ref roomNum, ref total, ref objNum);
@@ -201,7 +209,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
         Debug.Log(total + "   " + objNum);
 
         rooms[3][total].ownitemobjcts[objNum].itemSpawn(GameManager.Instance.itemsPrefabs[0]);
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 30; i++)
         {
 
             flag = false;
@@ -216,8 +224,12 @@ public class GameSceneManager : Singleton<GameSceneManager>
                     flag = true;
                 }
             }
+
             Debug.Log("itemDrop in " + itemDrop[index].transform.parent.name + " / " + itemDrop[index].name);
-            itemDrop[index].GetComponent<OwnItemObject>().itemSpawn(GameManager.Instance.itemsPrefabs[1]);
+            
+                int itemIndex = Random.Range(2, GameManager.Instance.itemsPrefabs.Count);
+
+            itemDrop[index].GetComponent<OwnItemObject>().itemSpawn(GameManager.Instance.itemsPrefabs[itemIndex]);
 
         }
 
@@ -273,30 +285,46 @@ public class GameSceneManager : Singleton<GameSceneManager>
     {
         yield return null;
 
+        player.canMove_any = false;
+        mainCanvas.SetActive(false);
+
         bossStartBang.SetActive(true);
 
-        mainCanvas.SetActive(false);
+        yield return new WaitForSeconds(1);
+
+        sagamTeacher.sprite = GameManager.Instance.sagamAngry;
+
+        yield return new WaitForSeconds(0.8f);
+
         player.light.pointLightOuterRadius = 30f;
 
         player.transform.position = teleportPos.position;
 
         isbossStart = true;
+        player.canMove_any = true;
+        
+        
     }
 
 
 
     IEnumerator bossEndCoroutine()
     {
+
         yield return null;
+        bossStartCollider.enabled = false;
 
-        bossStartBang.SetActive(true);
+        bossStartBang.SetActive(false);
 
-        mainCanvas.SetActive(false);
-        player.light.pointLightOuterRadius = 30f;
+        mainCanvas.SetActive(true);
 
-        player.transform.position = teleportPos.position;
+        player.transform.position = clearTeleportPos.position;
 
-        isbossStart = true;
+        player.canMove_any = true;
+
+
+        sagamTeacher.sprite = GameManager.Instance.sagamDie;
+
     }
 
 }

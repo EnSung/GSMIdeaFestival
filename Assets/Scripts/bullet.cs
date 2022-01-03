@@ -33,6 +33,7 @@ public class bullet : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             GameSceneManager.Instance.player.hp -= 1;
+            Destroy(gameObject);
         }
     }
 }
