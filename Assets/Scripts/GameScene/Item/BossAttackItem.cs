@@ -23,8 +23,11 @@ public class BossAttackItem : UsingItem
 
     void Update()
     {
-        if(isFollowing)
+        if (isFollowing)
+        {
             transform.position = Vector2.MoveTowards(transform.position, GameSceneManager.Instance.boss.transform.position, 5 * Time.deltaTime);
+            lookat2D(GameSceneManager.Instance.boss.transform.position);
+        }
 
     }
 
@@ -55,5 +58,15 @@ public class BossAttackItem : UsingItem
             GameSceneManager.Instance.boss.Damage();
             Destroy(gameObject);
         }
+    }
+
+    public void lookat2D(Vector3 target)
+    {
+
+        Vector3 dir = (target - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
     }
 }

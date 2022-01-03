@@ -73,9 +73,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+  m_Sprite: {fileID: -5428206428529569624, guid: f1337f9e1f7d221428992445d5059361,
     type: 3}
-  m_Color: {r: 0, g: 0.13727355, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.35, y: 0.37}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGetByPlayer: 0
   itemImage: {fileID: 2487411019758361491}
-  itemName: "\uCD08\uCF54\uBC14"
+  itemName: "\uB77C\uBA74"
   type: 0
-  up_gauge: 40
-  time: 0.5
+  up_gauge: 30
+  time: 1.2

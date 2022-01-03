@@ -24,6 +24,8 @@ public class UIManager : Singleton<UIManager>
     [Header("DIE")]
     public GameObject diePanel;
     public Transform dieTeleport;
+
+    public int cnt;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -120,7 +122,12 @@ public class UIManager : Singleton<UIManager>
     {
         diePanel.SetActive(true);
         SoundManager.Instance.bgSound.Stop();
+        if(cnt == 0)
+        {
+
         SoundManager.Instance.SFXPlay("게임오버", GameManager.Instance.gameoverSFX);
+            cnt++;
+        }
         GameSceneManager.Instance.player.transform.position = dieTeleport.position;
     }
 

@@ -7,7 +7,7 @@ public class ButtonScript : MonoBehaviour
 
     public void btnSound()
     {
-        SoundManager.Instance.SFXPlay("버튼 클릭",GameManager.Instance.btnClickSFX);
+        SoundManager.Instance.SFXPlay("버튼 클릭", GameManager.Instance.btnClickSFX);
     }
     public void toGameScene()
     {
@@ -78,10 +78,23 @@ public class ButtonScript : MonoBehaviour
         GameSceneManager.Instance.bossStartBang.SetActive(false);
 
         SoundManager.Instance.BgSoundPlay(GameManager.Instance.normalGameMusic);
+        UIManager.Instance.cnt = 0;
     }
 
     public void ToTitle()
     {
         LoadingSceneController.LoadScene("TitleScene");
     }
+
+    public void Cancel()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Continue()
+    {
+        Time.timeScale = 1;
+
+    }
+
 }

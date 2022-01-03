@@ -80,5 +80,6 @@ public class GameManager : Singleton<GameManager>
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UI_Q.Clear();
+        Time.timeScale = 1;
     }
 }
