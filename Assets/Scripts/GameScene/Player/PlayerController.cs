@@ -53,7 +53,7 @@ public class PlayerController : Unit
 
 
         applySpeed = speed;
-        hungryGauge = maxHungryGauge;
+        hungryGauge = maxHungryGauge-20;
         isdeCreaseHungryGauge = true;
         canMove_master = true;
         canMove_any  = true;

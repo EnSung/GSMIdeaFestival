@@ -35,6 +35,8 @@ public class GameManager : Singleton<GameManager>
     public AudioClip btnClickSFX;
     public AudioClip gameoverSFX;
     public AudioClip gameClearSFX;
+
+
     protected override void Awake()
     {
         DontDestroyOnLoad(this);

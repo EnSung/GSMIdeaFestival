@@ -48,7 +48,7 @@ public class DeskLamp : UsingItem
                 if (collision.collider.GetComponent<PlayerController>().usingItem == null)
                 {
                     collision.collider.GetComponent<PlayerController>().usingItem = this;
-                    this.isGetByPlayer = true;
+                    isGetByPlayer = true;
                     transform.parent = collision.transform;
                     transform.localPosition = Vector2.zero;
                     gameObject.GetComponent<SpriteRenderer>().enabled = false;
