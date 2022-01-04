@@ -37,13 +37,13 @@ public class ButtonScript : MonoBehaviour
     {
 
         GameSceneManager.Instance.player.ownItemList.Remove(GameSceneManager.Instance.player.ownItemList[GameSceneManager.Instance.player.ownItemList.Count - 1]);
-
+        GameSceneManager.Instance.boss.isDie = false;
         GameSceneManager.Instance.player.hp = 1;
         GameSceneManager.Instance.player.applySpeed = GameSceneManager.Instance.player.speed;
         GameSceneManager.Instance.ItemChoose = false;
         GameSceneManager.Instance.player.hungryGauge = GameSceneManager.Instance.player.maxHungryGauge;
 
-
+        ChooseItem.choosingItem = null;
         GameSceneManager.Instance.mainCanvas.SetActive(true);
         GameSceneManager.Instance.isbossStart = false;
 

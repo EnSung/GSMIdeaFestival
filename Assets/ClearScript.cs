@@ -7,7 +7,12 @@ public class ClearScript : MonoBehaviour
 {
     void Start()
     {
-        SoundManager.Instance.SFXPlay("클리어",GameManager.Instance.gameClearSFX);
+        Invoke("clear", 1.3f);
+    }
+
+    public void clear()
+    {
+        SoundManager.Instance.SFXPlay("클리어", GameManager.Instance.gameClearSFX);
         SoundManager.Instance.BgSoundPlay(GameManager.Instance.ClearMusic);
     }
 

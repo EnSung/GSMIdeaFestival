@@ -59,7 +59,7 @@ public class PlayerController : Unit
         canMove_any  = true;
         StartCoroutine(set_hungryGauge());
 
-
+        GameSceneManager.Instance.mapSetting();
         SoundManager.Instance.BgSoundPlay(GameManager.Instance.normalGameMusic);
 
     }

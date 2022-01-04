@@ -102,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.35, y: 0.37}
+    oldSize: {x: 1.1666666, y: 1.2333333}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,5 +127,5 @@ MonoBehaviour:
   itemImage: {fileID: 2487411019758361491}
   itemName: "\uB77C\uBA74"
   type: 0
-  up_gauge: 30
-  time: 1.2
+  up_gauge: 80
+  time: 0.8

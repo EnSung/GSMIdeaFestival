@@ -43,7 +43,6 @@ public class GameSceneManager : Singleton<GameSceneManager>
         }
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         linkMap();
-        mapSetting();
         Instantiate(GameManager.Instance.ChooseItemPrefab);
     }
 
@@ -223,11 +222,11 @@ public class GameSceneManager : Singleton<GameSceneManager>
         }
         {
 
-           
+
 
             Debug.Log("itemDrop in " + itemDrop[index].transform.parent.name + " / " + itemDrop[index].name);
-            
-                int itemIndex = Random.Range(2, GameManager.Instance.itemsPrefabs.Count);
+
+            int itemIndex = Random.Range(2, GameManager.Instance.itemsPrefabs.Count);
 
             itemDrop[index].GetComponent<OwnItemObject>().itemSpawn(GameManager.Instance.itemsPrefabs[itemIndex]);
 
@@ -286,7 +285,7 @@ public class GameSceneManager : Singleton<GameSceneManager>
         yield return null;
 
 
-
+        sagamTeacher.sprite = GameManager.Instance.sagamNormal;
         boss.isDie = false;
         while (boss.bullets.Count != 0)
         {

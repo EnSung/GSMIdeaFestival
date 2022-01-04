@@ -26,7 +26,6 @@ public class BossAttackItem : UsingItem
         if (isFollowing)
         {
             transform.position = Vector2.MoveTowards(transform.position, GameSceneManager.Instance.boss.transform.position, 5 * Time.deltaTime);
-            lookat2D(GameSceneManager.Instance.boss.transform.position);
         }
 
     }
