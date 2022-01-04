@@ -48,10 +48,6 @@ public class GameSceneManager : Singleton<GameSceneManager>
     }
 
 
-    private void Start()
-    {
-        SoundManager.Instance.BgSoundPlay(GameManager.Instance.normalGameMusic);
-    }
     private void Update()
     {
         
@@ -203,7 +199,6 @@ public class GameSceneManager : Singleton<GameSceneManager>
 
         int index = 0;
 
-        bool flag;
 
 
         randomNum(4, ref roomNum, ref total, ref objNum);

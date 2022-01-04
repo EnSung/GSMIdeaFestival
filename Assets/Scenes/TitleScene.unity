@@ -178,8 +178,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 528187d1a15de34479dc551ddb515110, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1711,7 +1711,7 @@ MonoBehaviour:
   BossMusic: {fileID: 8300000, guid: 0d403c24a336cef4d8eea233fcf0ca06, type: 3}
   LobbyMusic: {fileID: 8300000, guid: 528187d1a15de34479dc551ddb515110, type: 3}
   FollowingMusic: {fileID: 8300000, guid: 15a76ae08da70ed49a42bbf3754a37e2, type: 3}
-  ClearMusic: {fileID: 0}
+  ClearMusic: {fileID: 8300000, guid: c76c477fd540eec47b56349a2b1117da, type: 3}
   btnClickSFX: {fileID: 8300000, guid: 4a31872a8c062af4b8435e37283402fb, type: 3}
   gameoverSFX: {fileID: 8300000, guid: a853a7b9627f9554e9457d21c649649d, type: 3}
   gameClearSFX: {fileID: 8300000, guid: c1a9ab7b6fdad8a4c976b154046ddb16, type: 3}

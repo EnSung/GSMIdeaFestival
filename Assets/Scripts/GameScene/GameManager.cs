@@ -86,4 +86,5 @@ public class GameManager : Singleton<GameManager>
         UI_Q.Clear();
         Time.timeScale = 1;
     }
+
 }

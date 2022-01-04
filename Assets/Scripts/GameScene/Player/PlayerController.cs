@@ -58,6 +58,10 @@ public class PlayerController : Unit
         canMove_master = true;
         canMove_any  = true;
         StartCoroutine(set_hungryGauge());
+
+
+        SoundManager.Instance.BgSoundPlay(GameManager.Instance.normalGameMusic);
+
     }
 
     void Update()
